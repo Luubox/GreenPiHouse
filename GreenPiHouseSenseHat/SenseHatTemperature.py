@@ -269,7 +269,10 @@ def get_array(number, color):
         return error(color, 0)
 
 while True: 
+    #----------------------------
+    #Her måler vi temperaturen
     temp = int(s.get_temperature())
     print(temp)
+    #----------------------------
     s.set_pixels(get_array(temp, green))
     time.sleep(1)
