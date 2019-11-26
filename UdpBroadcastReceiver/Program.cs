@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 using ClassLibrary;
 using Newtonsoft.Json;
 
@@ -29,12 +32,26 @@ namespace UdpBroadcastReceiver
                 }
             }
         }
-        
 
         private static void Parse(string response)
         {
             Data d = JsonConvert.DeserializeObject<Data>(response);
-            //todo rest 
+
+            Uri uri = new Uri("https://greenpihouse.azurewebsites.net/api/data");
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            using (HttpClient client = new HttpClient())
+            {
+                StringContent content = new StringContent(response, Encoding.ASCII, "application/json");
+                Task<HttpResponseMessage> postAsync = client.PostAsync(uri, content);
+                HttpResponseMessage resp = postAsync.Result;
+                if (resp.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(resp);
+                    //String jsonResStr = resp.Content.ReadAsStringAsync().Result;
+                }
+            }
         }
     }
 }

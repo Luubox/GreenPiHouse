@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClassLibrary;
+using GreenPiHouseREST.DBUtil;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +13,7 @@ namespace GreenPiHouseREST.Controllers
     [ApiController]
     public class DataController : ControllerBase
     {
-        private readonly string _connectionString =
-            "Connection string: Data Source=greenpihousedb.database.windows.net;Initial Catalog=GreenPiHouseDB;" +
-            "User ID=dbadmin;Password=Secret123;" +
-            "Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private ManageData manager = new ManageData();
 
         // GET: api/Data
         [HttpGet]
@@ -32,8 +31,10 @@ namespace GreenPiHouseREST.Controllers
 
         // POST: api/Data
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Data value)
         {
+            Data d = new Data(value.SensorName, value.Temperature, value.Co2);
+            manager.Post(d);
         }
 
         // PUT: api/Data/5
