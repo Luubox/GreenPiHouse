@@ -1,6 +1,6 @@
 BROADCAST_TO_PORT = 7000
-
 from sense_hat import SenseHat
+import time
 from socket import *
 from datetime import datetime
 
