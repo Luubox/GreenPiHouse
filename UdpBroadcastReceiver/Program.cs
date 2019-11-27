@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using ClassLibrary;
 using Newtonsoft.Json;
@@ -17,6 +18,8 @@ namespace UdpBroadcastReceiver
 
         static void Main()
         {
+            //Parse("{\"SensorName\": \"Room D3.07\", \"Temperature\": 52, \"CO2\": 547}");
+
             using (UdpClient socket = new UdpClient(new IPEndPoint(IPAddress.Any, Port)))
             {
                 IPEndPoint remoteEndPoint = new IPEndPoint(0, 0);
@@ -35,21 +38,23 @@ namespace UdpBroadcastReceiver
 
         private static void Parse(string response)
         {
-            Data d = JsonConvert.DeserializeObject<Data>(response);
+            Uri uri = new Uri("https://thegreenerpihouse.azurewebsites.net/api/data");
+            //Uri uri = new Uri("http://localhost:61399/api/data");
 
-            Uri uri = new Uri("https://greenpihouse.azurewebsites.net/api/data");
-            //client.DefaultRequestHeaders.Accept.Clear();
-            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //"{\"SensorName\": \"Room D3.07\", \"Temperature\": 52, \"CO2\": 547}"
+            //Data d = JsonConvert.DeserializeObject<Data>(response);
 
             using (HttpClient client = new HttpClient())
             {
-                StringContent content = new StringContent(response, Encoding.ASCII, "application/json");
+                //String jsonStr = JsonConvert.SerializeObject(d);
+                StringContent content = new StringContent(response, Encoding.UTF8, "application/json");
+
                 Task<HttpResponseMessage> postAsync = client.PostAsync(uri, content);
+
                 HttpResponseMessage resp = postAsync.Result;
                 if (resp.IsSuccessStatusCode)
                 {
                     Debug.WriteLine(resp);
-                    //String jsonResStr = resp.Content.ReadAsStringAsync().Result;
                 }
             }
         }

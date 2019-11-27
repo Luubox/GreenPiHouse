@@ -17,9 +17,9 @@ namespace GreenPiHouseREST.Controllers
 
         // GET: api/Data
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Data> Get()
         {
-            return new string[] { "value1", "value2" };
+            return manager.Get();
         }
 
         // GET: api/Data/5
@@ -31,10 +31,12 @@ namespace GreenPiHouseREST.Controllers
 
         // POST: api/Data
         [HttpPost]
-        public void Post([FromBody] Data value)
+        public string Post([FromBody] Data value)
         {
             Data d = new Data(value.SensorName, value.Temperature, value.Co2);
-            manager.Post(d);
+            //return manager.Post(d);
+            
+            return $"Affected Rows: {manager.Post(d)}"; //testing purposes
         }
 
         // PUT: api/Data/5
