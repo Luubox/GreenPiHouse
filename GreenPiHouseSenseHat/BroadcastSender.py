@@ -5,7 +5,7 @@ from socket import *
 from datetime import datetime
 
 s = SenseHat()
-
+'''
 while True:
 
   temp = s.get_temperature()
@@ -17,7 +17,8 @@ while True:
   print("Temperature: " + str(temp) + " C")
   print("Humidity: " + str(humi) + " %")
   
-  time.sleep(60)
+  time.sleep(60) 
+  '''
 
 s = socket(AF_INET, SOCK_DGRAM)
 #s.bind(('', 14593))     # (ip, port)
@@ -25,8 +26,7 @@ s = socket(AF_INET, SOCK_DGRAM)
 s.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
 
 while True:
-	data = "Current temperature " + str(temp())
-	data = "Current humidity " + str(humi))
+	data = "Current temperature " + str(temp() + "Current humidity " + str(humi()))
 	s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
 	print(data)
 	time.sleep(1)
