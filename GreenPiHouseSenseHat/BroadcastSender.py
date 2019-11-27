@@ -17,7 +17,7 @@ while True:
   print("Temperature: " + str(temp) + " C")
   print("Humidity: " + str(humi) + " %")
   
-  time.sleep(60) 
+  time.sleep(3600) 
   '''
 
 s = socket(AF_INET, SOCK_DGRAM)
