@@ -8,7 +8,7 @@ s = SenseHat()
 
 while True:
 
-	#Måler temperatur
+  #Måler temperatur
   temp = s.get_temperature()
   #Måler luftfugtighed
   humi = s.get_humidity()
