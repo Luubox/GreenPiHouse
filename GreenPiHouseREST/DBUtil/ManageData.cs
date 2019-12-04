@@ -49,6 +49,12 @@ namespace GreenPiHouseREST.DBUtil
             return liste;
         }
 
+        public Data GetLatest()
+        {
+            IEnumerable<Data> GetLatestListe = Get();
+            return GetLatestListe.Last();
+        }
+
         protected Data ReadNextElement(SqlDataReader reader)
         {
             Data element = new Data();

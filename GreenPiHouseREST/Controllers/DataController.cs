@@ -29,6 +29,14 @@ namespace GreenPiHouseREST.Controllers
             return "value";
         }
 
+        // GET: /GetLatest
+        [HttpGet]
+        [Route("/GetLatest")]
+        public Data GetLatest()
+        {
+            return manager.GetLatest();
+        }
+
         // POST: api/Data
         [HttpPost]
         public string Post([FromBody] Data value)
