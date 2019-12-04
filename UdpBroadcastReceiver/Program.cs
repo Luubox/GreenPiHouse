@@ -14,6 +14,7 @@ namespace UdpBroadcastReceiver
 {
     class Program
     {
+        //TODO Decide on port
         private const int Port = 10100;
 
         static void Main()

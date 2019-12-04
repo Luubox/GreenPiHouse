@@ -14,8 +14,8 @@ namespace GreenPiHouseREST.DBUtil
             "User ID=dbadmin;Password=Secret123;" +
             "Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-        private const String Insert = "INSERT INTO Data VALUES (@sensorName, @temperature, @co2)";
-        private const String GetAll = "SELECT * FROM Data";
+        private const String Insert = "INSERT INTO DataTable VALUES (@temperature, @humidity)";
+        private const String GetAll = "SELECT * FROM DataTable";
 
         
         public int Post(Data value)
@@ -24,9 +24,8 @@ namespace GreenPiHouseREST.DBUtil
             using (SqlCommand cmd = new SqlCommand(Insert, conn))
             {
                 conn.Open();
-                cmd.Parameters.AddWithValue("@sensorName", value.SensorName);
                 cmd.Parameters.AddWithValue("@temperature", value.Temperature);
-                cmd.Parameters.AddWithValue("@co2", value.Co2);
+                cmd.Parameters.AddWithValue("@humidity", value.Humidity);
                 return cmd.ExecuteNonQuery();
             }
         }
@@ -51,17 +50,16 @@ namespace GreenPiHouseREST.DBUtil
 
         public Data GetLatest()
         {
-            IEnumerable<Data> GetLatestListe = Get();
-            return GetLatestListe.Last();
+            IEnumerable<Data> getLatestList = Get();
+            return getLatestList.Last();
         }
 
         protected Data ReadNextElement(SqlDataReader reader)
         {
             Data element = new Data();
 
-            element.SensorName = reader.GetString(0);
-            element.Temperature = reader.GetInt32(1) ;
-            element.Co2 = reader.GetInt32(2);
+            element.Temperature = reader.GetDouble(1) ;
+            element.Humidity = reader.GetDouble(2);
 
             return element;
         }
