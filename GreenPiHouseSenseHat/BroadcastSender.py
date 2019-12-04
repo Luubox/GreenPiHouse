@@ -61,15 +61,15 @@ while True:
 	if temp == optimal_temp and hum == optimal_hum:
       print(" ")
       s.clear()
-    elif temp > optimal_temp or hum > optimal_hum:
-      print("Over")
-      s.set_pixels(logo_up)
-    elif temp < optimal_temp or hum < optimal_hum:
-      print("Under")
-      s.set_pixels(logo_down)
-    else:
-        print("Fejl")
-        s.clear(R)
+  elif temp > optimal_temp or hum > optimal_hum:
+    print("Over")
+    s.set_pixels(logo_up)
+  elif temp < optimal_temp or hum < optimal_hum:
+    print("Under")
+    s.set_pixels(logo_down)
+  else:
+    print("Fejl")
+    s.clear(R)
 	sleep(1)
 	i += 1
 

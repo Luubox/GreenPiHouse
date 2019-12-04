@@ -2,10 +2,10 @@ import axios, {
     AxiosResponse,
     AxiosError
 } from "../../node_modules/axios/index";
+
 interface Idata {
-    sensorName: string, 
-    temperature: number,
-    co2: number
+    temperature: number, 
+    humidity: number,
 }
 
 let elementTemp: HTMLDivElement = <HTMLDivElement> (document.getElementById("temperature"))
@@ -16,13 +16,12 @@ elementButton.addEventListener("click", GetAll)
 LatestButton.addEventListener("click", GetLatest)
 
 function GetAll (){
-    console.log("Hej")
-    axios.get <Idata []> ("https://thegreenerpihouse.azurewebsites.net/api/data")
+    axios.get <Idata []> ("https://thegreenerpihouse.azurewebsites.net/GetAllData")
     .then(function (response: AxiosResponse < Idata[] > ): void {
         let result: string = "<ul>";
         console.log(response.data)
         response.data.forEach((c: Idata) => {
-            result += "<li>" + c.sensorName + " " + c.temperature + " " + c.co2 + "</li>"
+            result += "<li>Temperature: " + c.temperature + " Humidity: " + c.humidity + "</li>"
         })
         result + "</ul>"
         elementTemp.innerHTML = result
@@ -33,15 +32,10 @@ function GetAll (){
 }
 
 function GetLatest() {
-    axios.get <Idata> ("https://thegreenerpihouse.azurewebsites.net/GetLatest")
+    axios.get <Idata> ("https://thegreenerpihouse.azurewebsites.net/GetLatestData")
     .then(function (response: AxiosResponse < Idata> ): void {
-        let result: string = "<ul>";
         console.log(response.data)
-        result += response.data.co2 + " " + response.data.sensorName + " " + response.data.temperature
-        // response.data.((c: Idata) => {
-        //     result += c.co2 + " " + c.sensorName + " " + c.temperature
-        // })
-        result + "</ul>"
+        let result = "Temperatur: " + response.data.temperature + " Luftfugtighed: " + response.data.humidity
         elementTemp.innerHTML = result
     })
     .catch(function (error: AxiosError): void {
