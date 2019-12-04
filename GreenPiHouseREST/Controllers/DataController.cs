@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ClassLibrary;
+using TheClassierLibrary;
 using GreenPiHouseREST.DBUtil;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,23 +15,17 @@ namespace GreenPiHouseREST.Controllers
     {
         private ManageData manager = new ManageData();
 
-        // GET: api/Data
+        // GET: /GetAll
         [HttpGet]
+        [Route("/GetAllData")]
         public IEnumerable<Data> Get()
         {
             return manager.Get();
         }
 
-        // GET: api/Data/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // GET: /GetLatest
         [HttpGet]
-        [Route("/GetLatest")]
+        [Route("/GetLatestData")]
         public Data GetLatest()
         {
             return manager.GetLatest();
@@ -41,22 +35,10 @@ namespace GreenPiHouseREST.Controllers
         [HttpPost]
         public string Post([FromBody] Data value)
         {
-            Data d = new Data(value.SensorName, value.Temperature, value.Co2);
+            Data d = new Data(value.Temperature, value.Humidity);
             //return manager.Post(d);
             
             return $"Affected Rows: {manager.Post(d)}"; //testing purposes
-        }
-
-        // PUT: api/Data/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
