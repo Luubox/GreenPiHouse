@@ -19,7 +19,6 @@ namespace UdpBroadcastReceiver
 
         static void Main()
         {
-            //Parse("{\"SensorName\": \"Room D3.07\", \"Temperature\": 52, \"CO2\": 547}");
 
             using (UdpClient socket = new UdpClient(new IPEndPoint(IPAddress.Any, Port)))
             {
@@ -42,12 +41,8 @@ namespace UdpBroadcastReceiver
             Uri uri = new Uri("https://thegreenerpihouse.azurewebsites.net/api/data");
             //Uri uri = new Uri("http://localhost:61399/api/data");
 
-            //"{\"SensorName\": \"Room D3.07\", \"Temperature\": 52, \"CO2\": 547}"
-            //Data d = JsonConvert.DeserializeObject<Data>(response);
-
             using (HttpClient client = new HttpClient())
             {
-                //String jsonStr = JsonConvert.SerializeObject(d);
                 StringContent content = new StringContent(response, Encoding.UTF8, "application/json");
 
                 Task<HttpResponseMessage> postAsync = client.PostAsync(uri, content);
