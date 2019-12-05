@@ -11,6 +11,7 @@ class Data:
 dataobj = Data(299, 45)
 
 m = {'Temperature': dataobj.temperature, 'Humidity': dataobj.humidity}
-data = json.load(dataobj)
+n = json.dump(m)
+o = json.load(m)
 
-print (data)
+print (o['Temperature'], o['Humidity'])

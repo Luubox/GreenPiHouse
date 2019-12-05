@@ -10,7 +10,7 @@ optimal_hum = input("Indtast den optimale luftfugtighed: ")
 
 s = SenseHat()
 
-UDP_IP = "192.168.1.255"
+UDP_IP = "0.0.0.0"
 UDP_PORT = 5005
 
 sock = socket(AF_INET, SOCK_DGRAM) 
@@ -43,22 +43,13 @@ logo_down = [
     O, O, O, X, X, O, O, O,
 ]
 
-class Data(self, temperature, humidity):
-  def __init__(self, temperature, humidity):
-    self.temperature = temperature
-    self.humidity = humidity
-
-  def __str__(self):
-    return f'Temperature: {self.temperature}, Humidity: {self.humidity}'
-
-
 def lyt():
   data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
   print ("received message:", data)
 
-def broadcast():
+def broadcast(temp, humi):
 	# data = "Current temperature " + str(temp() + "Current humidity " + str(humi()))
-  data = json.dump()
+  data = "{'Temperature': {}, 'Humidity': {}}".format(temp, humi)
 	sock.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
 	print(data)
 	time.sleep(1)
@@ -95,7 +86,7 @@ def main():
     
     lyt()
     if i == 3600:
-      broadcast(dataobj)
+      broadcast(temp, humi)
       i = 0
   
     compareValues(temp, humi)
