@@ -3,7 +3,6 @@ from sense_hat import SenseHat
 import time
 from socket import *
 from datetime import datetime
-import json_tricks as json
 import requests
 
 #---Test af optimale værdier------
@@ -54,14 +53,14 @@ def RESTPost(value):
   url = 'https://thegreenerpihouse.azurewebsites.net/api/regulation'
   myobj = {'Status': value}
   resp = requests.post(url, data=myobj)
+  print(resp)
 
 def lyt():
   data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
   print ("received message:", data)
 
 def broadcast(temp, humi):
-  # data = "Current temperature " + str(temp() + "Current humidity " + str(humi()))
-  data = "{'Temperature': {}, 'Humidity': {}}".format(temp, humi)
+  data = "{" + "'Temperature': {}, 'Humidity': {}".format(temp, humi) + "}"
   sock.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
   print(data)
   time.sleep(1)
@@ -94,19 +93,17 @@ def main():
     temp = round(temp, 1)
     humi = round(humi, 1)
 
-    dataobj = Data(temp, humi)
-
     print("Temperature: " + str(temp) + " C")
     print("Humidity: " + str(humi) + " %")
 
-    lyt()
-    if i == 3600:
+#    lyt()
+    if i == 1:
       broadcast(temp, humi)
       i = 0
 
     compareValues(temp, humi)
 
-    sleep(1)
+    time.sleep(1)
     i += 1
 
 if __name__ == '__main__':
