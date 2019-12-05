@@ -21,11 +21,11 @@ h1{
     color: #be4a14; }
   
 
-div {
+.grid-container {
   display: grid;
   grid: auto-flow / auto 1fr;
 }
-li {
+.li {
   grid-column: span 2;
   display: grid;
   grid-template-columns: subgrid;
@@ -36,4 +36,8 @@ label {
 }
 input {
   grid-column: 2;
+}
+
+allign {
+  text-align: center;
 }
