@@ -353,4 +353,4 @@ MigrationBackup/
 .ionide/
 
 #Ignore dist folder in web solution
-/TheGreenerPiHouseWeb/dist
+TheGreenerPiHouseWeb/dist/
