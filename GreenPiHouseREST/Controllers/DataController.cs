@@ -15,7 +15,7 @@ namespace GreenPiHouseREST.Controllers
     {
         private ManageData manager = new ManageData();
 
-        // GET: /GetAll
+        // GET: /GetAllData
         [HttpGet]
         [Route("/GetAllData")]
         public IEnumerable<Data> Get()

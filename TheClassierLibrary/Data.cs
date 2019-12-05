@@ -40,10 +40,23 @@ namespace TheClassierLibrary
         {
             if (obj is Data that)
             {
-                return Math.Abs(this.Temperature - that.Temperature) < 0 && Math.Abs(this.Humidity - that.Humidity) < 0;
+                return Math.Abs(this.Temperature - that.Temperature) < 0.001 && Math.Abs(this.Humidity - that.Humidity) < 0.001;
             }
 
             return false;
+        }
+
+        protected bool Equals(Data other)
+        {
+            return _temperature.Equals(other._temperature) && _humidity.Equals(other._humidity);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (_temperature.GetHashCode() * 397) ^ _humidity.GetHashCode();
+            }
         }
     }
 }

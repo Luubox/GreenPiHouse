@@ -28,7 +28,7 @@ function GetTempterature(){
     axios.get <Idata> ("https://thegreenerpihouse.azurewebsites.net/GetLatestData")
     .then(function (response: AxiosResponse <Idata>): void {
         console.log(response.data)
-        let result = "Temperature: " + response.data.temperature + "°C"
+        let result = response.data.temperature + "°C"
         elementTemp.innerHTML = result
     })
     .catch(function(error: AxiosError): void {
@@ -40,7 +40,7 @@ function GetHumidity(){
     axios.get <Idata> ("https://thegreenerpihouse.azurewebsites.net/GetLatestData")
     .then(function (response: AxiosResponse <Idata>): void{
         console.log(response.data)
-        let result = "Humidity: " + response.data.humidity + "%"
+        let result = response.data.humidity + "%"
         elementHumi.innerHTML = result
     })
     .catch(function(error: AxiosError): void {

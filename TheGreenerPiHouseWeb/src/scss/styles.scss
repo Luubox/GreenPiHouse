@@ -20,31 +20,20 @@ h1{
   h2, h1 {
     color: #be4a14; }
   
-    grid-container{
-      display: grid;
-      grid-template-columns: auto auto auto;
-      grid-row-start: 1; 
-      grid-row-end: 3;
-      grid-column-start: 1;
-      grid-column-end: 3;
-    }
-  
-    // .grid-container {
-    //   display: grid;
-    //   justify-content: space-evenly;
-    //   grid-template-columns: 50px 50px 50px; /*Make the grid smaller than the container*/
-    //   grid-gap: 10px;
-    //   background-color: #2196F3;
-    //   padding: 10px;
-    // }
-    
-  
-    grid-item1{
-      grid-row: 1;
-      grid-column: 1;
-    }
-  
-    grid-item2{
-      grid-column: 3;
-      grid-row: 3;
-    }
+
+div {
+  display: grid;
+  grid: auto-flow / auto 1fr;
+}
+li {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: subgrid;
+  border: solid;
+}
+label {
+  grid-column: 1;
+}
+input {
+  grid-column: 2;
+}
