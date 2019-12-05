@@ -11,7 +11,7 @@ optimal_temp = input("Indtast den optimale temperatur: ")
 optimal_hum = input("Indtast den optimale luftfugtighed: ")
 #---------------------------------
 
-#--------------UDP----------------
+#--------------UDP----------------HAHAHAj
 UDP_IP = "0.0.0.0"
 UDP_PORT = 5005
 
