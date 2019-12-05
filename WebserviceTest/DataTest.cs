@@ -43,6 +43,7 @@ namespace WebserviceTest
         [TestMethod]
         public void TestPost()
         {
+            //todo kan det simuleres i stedet
             Data expectedNewData = new Data(100.0,100.0);
 
             _controller.Post(expectedNewData);
