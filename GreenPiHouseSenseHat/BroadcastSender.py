@@ -15,7 +15,7 @@ optimal_hum = input("Indtast den optimale luftfugtighed: ")
 UDP_IP = "0.0.0.0"
 UDP_PORT = 5005
 
-sock = socket(AF_INET, SOCK_DGRAM) 
+sock = socket(AF_INET, SOCK_DGRAM)
 sock.bind((UDP_IP, UDP_PORT))
 sock.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
 #---------------------------------
@@ -41,7 +41,7 @@ logo_up = [
 logo_down = [
     O, O, O, X, X, O, O, O,
     O, O, O, X, X, O, O, O,
-    O, O, O, X, X, O, O, O,    
+    O, O, O, X, X, O, O, O,
     X, O, O, X, X, O, O, X,
     X, X, O, X, X, O, X, X,
     O, X, X, X, X, X, X, O,
@@ -60,11 +60,11 @@ def lyt():
   print ("received message:", data)
 
 def broadcast(temp, humi):
-	# data = "Current temperature " + str(temp() + "Current humidity " + str(humi()))
+  # data = "Current temperature " + str(temp() + "Current humidity " + str(humi()))
   data = "{'Temperature': {}, 'Humidity': {}}".format(temp, humi)
-	sock.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
-	print(data)
-	time.sleep(1)
+  sock.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
+  print(data)
+  time.sleep(1)
 
 def compareValues(temp, hum, optimal_temp = 20, optimal_hum = 45):
   if temp == optimal_temp and hum == optimal_hum:
@@ -90,22 +90,22 @@ def main():
     temp = s.get_temperature()
     #Måler luftfugtighed
     humi = s.get_humidity()
-    
+
     temp = round(temp, 1)
     humi = round(humi, 1)
-    
+
     dataobj = Data(temp, humi)
 
     print("Temperature: " + str(temp) + " C")
     print("Humidity: " + str(humi) + " %")
-    
+
     lyt()
     if i == 3600:
       broadcast(temp, humi)
       i = 0
-  
+
     compareValues(temp, humi)
-    
+
     sleep(1)
     i += 1
 
