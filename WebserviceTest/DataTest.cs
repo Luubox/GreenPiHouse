@@ -44,12 +44,13 @@ namespace WebserviceTest
         public void TestPost()
         {
             Data expectedNewData = new Data(100.0,100.0);
-            Data actualData = _controller.GetLatest();
 
             _controller.Post(expectedNewData);
+            Data actualData = _controller.GetLatest();
             
-            Assert.AreEqual(expectedNewData.Temperature, actualData.Temperature);
-            Assert.AreEqual(expectedNewData.Humidity, actualData.Humidity);
+            //Assert.AreEqual(expectedNewData.Temperature, actualData.Temperature);
+            //Assert.AreEqual(expectedNewData.Humidity, actualData.Humidity);
+            Assert.AreEqual(expectedNewData,actualData);
         }
     }
 }
