@@ -75,3 +75,67 @@ function GetLatest() {
         elementTemp.innerHTML = error.message
     })
 }
+
+interface IdataAPI {
+    temperature: number,
+    humidity: number,
+    skyText: string,
+    windText: string
+}
+
+let elementTempAPI: HTMLDivElement = <HTMLDivElement> (document.getElementById(""))
+let elementHumiAPI: HTMLDivElement = <HTMLDivElement> (document.getElementById(""))
+let elementSkyText: HTMLDivElement = <HTMLDivElement> (document.getElementById(""))
+let elementWindText: HTMLDivElement = <HTMLDivElement> (document.getElementById(""))
+elementWindow.addEventListener ("loadedAPI", GetTemperatureAPI)
+window.addEventListener("loadAPI", (event)=> {
+    GetTemperatureAPI()
+    GetHumidityAPI()
+    GetSkyTextAPI()
+    GetWindTextAPI()
+})
+
+function GetTemperatureAPI() {
+    axios.get <IdataAPI> ("https://vejr.eu/api.php?location=Roskilde&degree=C")
+    .then(function (response: AxiosResponse <IdataAPI> ): void {
+        console.log(response.data)
+        let result ="Outside temperature:" + response.data.temperature + "°C"
+        elementTemp.innerHTML = result
+    })
+    .catch(function(error: AxiosError): void {
+        elementTempAPI.innerHTML = error.message
+    }) 
+}
+
+function GetHumidityAPI() {
+    axios.get <IdataAPI> ("https://vejr.eu/api.php?location=Roskilde&degree=C")
+    .then(function(response: AxiosResponse <IdataAPI> ): void {
+        console.log(response.data)
+        let result ="Outside humidity:" + response.data.humidity + "%"
+    })
+    .catch(function(error: AxiosError): void {
+        elementHumiAPI.innerHTML = error.message
+    }) 
+}
+
+function GetSkyTextAPI() {
+    axios.get <IdataAPI> ("https://vejr.eu/api.php?location=Roskilde&degree=C")
+    .then(function(response: AxiosResponse <IdataAPI> ): void {
+        console.log(response.data)
+        let result ="Current weather:" + response.data.skyText
+    })
+    .catch(function(error: AxiosError): void {
+        elementSkyText.innerHTML = error.message
+    }) 
+}
+
+function GetWindTextAPI() {
+    axios.get <IdataAPI> ("")
+    .then(function(response: AxiosResponse <IdataAPI> ): void {
+        console.log(response.data)
+        let result ="Wind speed:" + response.data.windText + "m/s"
+    })
+    .catch(function(error: AxiosError): void {
+        elementWindText.innerHTML = error.message
+    })
+}
