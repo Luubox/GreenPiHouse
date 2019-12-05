@@ -1,0 +1,27 @@
+#content {
+  color: #0091aa; }
+
+h2, h1 {
+  color: #be4a14; }
+
+#content {
+  color: #0091aa; }
+
+h2, h1, h1 {
+  color: #be4a14; }
+
+div {
+  display: grid;
+  grid: auto-flow / auto 1fr; }
+
+li {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: subgrid;
+  border: solid; }
+
+label {
+  grid-column: 1; }
+
+input {
+  grid-column: 2; }
