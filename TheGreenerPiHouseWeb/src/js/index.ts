@@ -113,6 +113,7 @@ function GetHumidityAPI() {
     .then(function(response: AxiosResponse <CurrentData> ): void {
         console.log(response.data)
         let result ="Outside humidity:" + response.data.humidity + "%"
+        elementTemp.innerHTML = result
     })
     .catch(function(error: AxiosError): void {
         elementHumiAPI.innerHTML = error.message
@@ -124,6 +125,7 @@ function GetSkyTextAPI() {
     .then(function(response: AxiosResponse <CurrentData> ): void {
         console.log(response.data)
         let result ="Current weather:" + response.data.skyText
+        elementTemp.innerHTML = result
     })
     .catch(function(error: AxiosError): void {
         elementSkyText.innerHTML = error.message
@@ -135,6 +137,7 @@ function GetWindTextAPI() {
     .then(function(response: AxiosResponse <CurrentData> ): void {
         console.log(response.data)
         let result ="Wind speed:" + response.data.windText + "m/s"
+        elementTemp.innerHTML = result
     })
     .catch(function(error: AxiosError): void {
         elementWindText.innerHTML = error.message
