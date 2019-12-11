@@ -52,7 +52,8 @@ logo_down = [
 
 def RESTPost(value):
   url = 'https://thegreenerpihouse.azurewebsites.net/api/regulation'
-  myobj = {'Timestamp': datetime.now().replace(microsecond=0), 'Status': value}
+  nowtime =  str(datetime.now().date()) + "T" + str(datetime.now().time().replace(microsecond=0))
+  myobj = {'timestamp': nowtime, 'status': value }
   resp = requests.post(url, json=myobj)
   print(resp)
 
@@ -70,15 +71,15 @@ def compareValues(temp, hum):
   if temp == optimal_temp and hum == optimal_hum:
     print(" ")
     s.clear()
-    RESTPost(0)
+    RESTPost(False)
   elif temp > optimal_temp or hum > optimal_hum:
     print("Over")
     s.set_pixels(logo_up)
-    RESTPost(1)
+    RESTPost(True)
   elif temp < optimal_temp or hum < optimal_hum:
     print("Under")
     s.set_pixels(logo_down)
-    RESTPost(0)
+    RESTPost(False)
   else:
     print("Fejl")
     s.clear(R)
