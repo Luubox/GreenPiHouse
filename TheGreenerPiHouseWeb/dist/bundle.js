@@ -2073,6 +2073,9 @@ var temperatureArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
     22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
 var elementTemp = (document.getElementById("temperature"));
 var elementHumi = (document.getElementById("humidity"));
+var elementTempOut = (document.getElementById("tmpout"));
+var elementHumiOut = (document.getElementById("humout"));
+var testbtn = (document.getElementById("testButton"));
 var elementWindow = (document.getElementById("body"));
 elementWindow.addEventListener("loadend", GetTempterature);
 window.addEventListener("load", function (event) {
@@ -2080,6 +2083,7 @@ window.addEventListener("load", function (event) {
     GetHumidity();
 });
 var temperatureSelector = (document.getElementById("temperatureOption"));
+testbtn.addEventListener("click", apiCall);
 //let elementButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("startbutton"))
 // let LatestButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("Latestbutton"))
 // elementButton.addEventListener("click", GetAll)
@@ -2137,6 +2141,22 @@ function GetLatest() {
     })
         .catch(function (error) {
         elementTemp.innerHTML = error.message;
+    });
+}
+function apiCall() {
+    // let loc = "Roskilde"
+    // let unit = "C"
+    // axios.get <Idata> ("https://vejr.eu/api.php?location=" + loc + "&degree=" + unit)
+    // .then(function (response: AxiosResponse <CurrentData>): void{
+    //     console.log(response.data)
+    // })
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://api.openweathermap.org/data/2.5/weather?q=Roskilde&units=metric&appid=45ca4ad4019ca871293511a2e165a166")
+        .then(function (response) {
+        console.log(response.data);
+        var tempRes = response.data.main.temp + "°C";
+        var humiRes = response.data.main.humidity + "%";
+        elementTempOut.innerHTML = tempRes;
+        elementHumiOut.innerHTML = humiRes;
     });
 }
 

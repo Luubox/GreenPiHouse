@@ -17,6 +17,11 @@ let temperatureArray: number[] =
 
 let elementTemp: HTMLDivElement = <HTMLDivElement> (document.getElementById("temperature"))
 let elementHumi: HTMLDivElement = <HTMLDivElement> (document.getElementById("humidity"))
+
+let elementTempOut: HTMLDivElement = <HTMLDivElement> (document.getElementById("tmpout"))
+let elementHumiOut: HTMLDivElement = <HTMLDivElement> (document.getElementById("humout"))
+let testbtn : HTMLButtonElement = <HTMLButtonElement> (document.getElementById("testButton"))
+
 let elementWindow: HTMLBodyElement = <HTMLBodyElement> (document.getElementById("body"))
 elementWindow.addEventListener("loadend", GetTempterature)
 window.addEventListener("load", (event)=> {
@@ -27,6 +32,7 @@ window.addEventListener("load", (event)=> {
 let temperatureSelector: HTMLOptionElement = <HTMLOptionElement> (document.getElementById("temperatureOption"))
 
 
+testbtn.addEventListener("click", apiCall)
 
 //let elementButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("startbutton"))
 // let LatestButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("Latestbutton"))
@@ -93,5 +99,26 @@ function GetLatest() {
     })
     .catch(function (error: AxiosError): void {
         elementTemp.innerHTML = error.message
+    })
+}
+
+
+
+function apiCall(){
+    // let loc = "Roskilde"
+    // let unit = "C"
+    // axios.get <Idata> ("https://vejr.eu/api.php?location=" + loc + "&degree=" + unit)
+    // .then(function (response: AxiosResponse <CurrentData>): void{
+    //     console.log(response.data)
+    // })
+    
+    axios.get<any> ("http://api.openweathermap.org/data/2.5/weather?q=Roskilde&units=metric&appid=45ca4ad4019ca871293511a2e165a166")
+    .then(function (response: AxiosResponse <any> ): void{
+        console.log(response.data)
+        let tempRes = response.data.main.temp + "°C"
+        let humiRes = response.data.main.humidity + "%"
+        
+        elementTempOut.innerHTML = tempRes;
+        elementHumiOut.innerHTML = humiRes;
     })
 }
