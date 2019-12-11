@@ -2069,6 +2069,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/axios/index */ "./node_modules/axios/index.js");
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__);
 
+var temperatureArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
 var elementTemp = (document.getElementById("temperature"));
 var elementHumi = (document.getElementById("humidity"));
 var elementWindow = (document.getElementById("body"));
@@ -2077,10 +2079,18 @@ window.addEventListener("load", function (event) {
     GetTempterature();
     GetHumidity();
 });
+var temperatureSelector = (document.getElementById("temperatureOption"));
 //let elementButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("startbutton"))
 // let LatestButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("Latestbutton"))
 // elementButton.addEventListener("click", GetAll)
 // LatestButton.addEventListener("click", GetLatest)
+var clickValueTemp = (document.getElementById("chooseTempButton"));
+var clickValueHumi = (document.getElementById("chooseHumiButton"));
+function temperatureValues() {
+    for (var i = 0; i < 40; i++) {
+        console.log(i + "°C");
+    }
+}
 function GetTempterature() {
     _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://thegreenerpihouse.azurewebsites.net/GetLatestData")
         .then(function (response) {
