@@ -6,8 +6,8 @@ from datetime import datetime
 import requests
 
 #---Test af optimale værdier------
-optimal_temp = input("Indtast den optimale temperatur: ")
-optimal_hum = input("Indtast den optimale luftfugtighed: ")
+optimal_temp = float(input("Indtast den optimale temperatur: "))
+optimal_hum = float(input("Indtast den optimale luftfugtighed: "))
 #---------------------------------
 
 #--------------UDP----------------HAHAHAj
@@ -21,6 +21,7 @@ sock.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
 
 #------------SenseHat-------------
 s = SenseHat()
+s.low_light = True
 
 O = (0,0,0)
 X = (200,200,200)
@@ -50,9 +51,9 @@ logo_down = [
 #---------------------------------
 
 def RESTPost(value):
-  url = 'https://thegreenerpihouse.azurewebsites.net/api/regulation'
-  myobj = {'Status': value}
-  resp = requests.post(url, data=myobj)
+  url = 'http://thegreenerpihouse.azurewebsites.net/api/regulation'
+  myobj = {'Status': 1}
+  resp = requests.post(url, data={'Status': value})
   print(resp)
 
 def lyt():
@@ -65,7 +66,7 @@ def broadcast(temp, humi):
   print(data)
   time.sleep(1)
 
-def compareValues(temp, hum, optimal_temp = 20, optimal_hum = 45):
+def compareValues(temp, hum):
   if temp == optimal_temp and hum == optimal_hum:
     print(" ")
     s.clear()
