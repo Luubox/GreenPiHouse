@@ -34,3 +34,6 @@ allign {
 
 .col {
   border-style: solid; }
+
+.top-buffer {
+  margin-top: 20px; }
