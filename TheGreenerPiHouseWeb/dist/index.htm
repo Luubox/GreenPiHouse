@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="./scss/styles.scss">
+  <link rel="stylesheet" href="./scss/styles.scss" type="text/html">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="padding: 1cm">
       <div id="temperatureInside" class="col-sm-6">
         <h1>Temperatur</h1>
         <div id="temperature"></div>
@@ -74,7 +74,7 @@
           <option>39​°C</option>
           <option>40​°C</option>
         </select>
-        <button id="chooseTempButton" data-bind="">Indstil</button>
+        <button id="chooseTempButton">Indstil</button>
       </div>
 
       <div id="humidityInside" class="col-sm-6">
@@ -109,12 +109,12 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="padding: 1cm">
 
       <div class="col-sm-6">
         <h1>Ude temperatur</h1>
         <div id="tmpout">35°C</div>
-        <button class="material-icons" id="testButton">autorenew</button>
+        <i style="font-size: 80px;" class="material-icons" id="testButton">refresh</i>
       </div>
 
       <div class="col-sm-6">
@@ -123,16 +123,41 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="padding: 1cm">
+      <div class="col-sm">
+        <h1 style="text-align: center;">5 dages prognose</h1>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1cm">
+      <div class="col-sm" style="text-align: center;">
+        <h1>Dag 1</h1>
+      </div>
+      <div class="col-sm" style="text-align: center;">
+          <h1>Dag 2</h1>
+      </div>
+      <div class="col-sm" style="text-align: center;">
+          <h1>Dag 3</h1>
+      </div>
+      <div class="col-sm" style="text-align: center;">
+          <h1>Dag 4</h1>
+      </div>
+      <div class="col-sm" style="text-align: center;">
+          <h1>Dag 5</h1>
+      </div>
+    </div>
+
+    <div class="row"style="padding: 1cm">
 
       <div class="col-sm">
         <h3>Status for vindue</h3>
-        <i class="material-icons">keyboard_arrow_down</i>
-        <i class="material-icons">keyboard_arrow_up</i>
+        <i style="font-size: 80px;" style="text-align: center;" class="material-icons">keyboard_arrow_down</i>
+        <i style="font-size: 80px;" style="text-align: center;" class="material-icons">keyboard_arrow_up</i>
 
       </div>
       <div class="col-sm">
         <h3>Status for vanding af planter</h3>
+        <i style="font-size: 80px;" style="text-align: center;" class="material-icons md-48">local_florist</i>
       </div>
     </div>
 
