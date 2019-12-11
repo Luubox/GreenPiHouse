@@ -89,6 +89,9 @@ def broadcast(temp, humi):
   print(data)
   time.sleep(1)
 
+def Watering():
+  s.set_pixel(0,0,0,0,255)
+
 def compareValues(temp, hum):
   if temp == optimal_temp and hum == optimal_hum:
     print(" ")
@@ -132,3 +135,4 @@ def main():
 
 if __name__ == '__main__':
   main()
+  Watering()
