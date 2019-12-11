@@ -76,17 +76,18 @@ function GetLatest() {
     })
 }
 
-interface IdataAPI {
+interface CurrentData {
     temperature: number,
     humidity: number,
     skyText: string,
     windText: string
 }
 
-let elementTempAPI: HTMLDivElement = <HTMLDivElement> (document.getElementById("TempAPI"))
-let elementHumiAPI: HTMLDivElement = <HTMLDivElement> (document.getElementById("HumiAPI"))
-let elementSkyText: HTMLDivElement = <HTMLDivElement> (document.getElementById("SkyText"))
-let elementWindText: HTMLDivElement = <HTMLDivElement> (document.getElementById("WindText"))
+let elementTempAPI: HTMLDivElement = <HTMLDivElement> (document.getElementById("temperatureAPI"))
+let elementHumiAPI: HTMLDivElement = <HTMLDivElement> (document.getElementById("humidityAPI"))
+let elementSkyText: HTMLDivElement = <HTMLDivElement> (document.getElementById("skyTextAPI"))
+let elementWindText: HTMLDivElement = <HTMLDivElement> (document.getElementById("windTextAPI"))
+let elementBody: HTMLBodyElement = <HTMLBodyElement> (document.getElementById("body"))
 elementWindow.addEventListener ("loadedAPI", GetTemperatureAPI)
 window.addEventListener("loadAPI", (event)=> {
     GetTemperatureAPI()
@@ -96,8 +97,8 @@ window.addEventListener("loadAPI", (event)=> {
 })
 
 function GetTemperatureAPI() {
-    axios.get <IdataAPI> ("https://vejr.eu/api.php?location=Roskilde&degree=C")
-    .then(function (response: AxiosResponse <IdataAPI> ): void {
+    axios.get <CurrentData> ("https://vejr.eu/api.php?location=Roskilde&degree=C")
+    .then(function (response: AxiosResponse <CurrentData> ): void {
         console.log(response.data)
         let result ="Outside temperature:" + response.data.temperature + "°C"
         elementTemp.innerHTML = result
@@ -108,8 +109,8 @@ function GetTemperatureAPI() {
 }
 
 function GetHumidityAPI() {
-    axios.get <IdataAPI> ("https://vejr.eu/api.php?location=Roskilde&degree=C")
-    .then(function(response: AxiosResponse <IdataAPI> ): void {
+    axios.get <CurrentData> ("https://vejr.eu/api.php?location=Roskilde&degree=C")
+    .then(function(response: AxiosResponse <CurrentData> ): void {
         console.log(response.data)
         let result ="Outside humidity:" + response.data.humidity + "%"
     })
@@ -119,8 +120,8 @@ function GetHumidityAPI() {
 }
 
 function GetSkyTextAPI() {
-    axios.get <IdataAPI> ("https://vejr.eu/api.php?location=Roskilde&degree=C")
-    .then(function(response: AxiosResponse <IdataAPI> ): void {
+    axios.get <CurrentData> ("https://vejr.eu/api.php?location=Roskilde&degree=C")
+    .then(function(response: AxiosResponse <CurrentData> ): void {
         console.log(response.data)
         let result ="Current weather:" + response.data.skyText
     })
@@ -130,12 +131,24 @@ function GetSkyTextAPI() {
 }
 
 function GetWindTextAPI() {
-    axios.get <IdataAPI> ("")
-    .then(function(response: AxiosResponse <IdataAPI> ): void {
+    axios.get <CurrentData> ("")
+    .then(function(response: AxiosResponse <CurrentData> ): void {
         console.log(response.data)
         let result ="Wind speed:" + response.data.windText + "m/s"
     })
     .catch(function(error: AxiosError): void {
         elementWindText.innerHTML = error.message
+    })
+}
+
+function GetLatestAPI() {
+    axios.get <CurrentData> ("https://vejr.eu/api.php?location=Roskilde&degree=C")
+    .then(function (response: AxiosResponse <CurrentData> ): void {
+        console.log(response.data)
+        let result = "Temperatur: " + response.data.temperature + " Luftfugtighed: " + response.data.humidity + " Vejrforhold:" + response.data.skyText + " Vindhastighed:" + response.data.windText
+        elementTemp.innerHTML = result
+    })
+    .catch(function (error: AxiosError): void {
+        elementTemp.innerHTML = error.message
     })
 }
