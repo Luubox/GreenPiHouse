@@ -83,10 +83,10 @@ interface IdataAPI {
     windText: string
 }
 
-let elementTempAPI: HTMLDivElement = <HTMLDivElement> (document.getElementById(""))
-let elementHumiAPI: HTMLDivElement = <HTMLDivElement> (document.getElementById(""))
-let elementSkyText: HTMLDivElement = <HTMLDivElement> (document.getElementById(""))
-let elementWindText: HTMLDivElement = <HTMLDivElement> (document.getElementById(""))
+let elementTempAPI: HTMLDivElement = <HTMLDivElement> (document.getElementById("TempAPI"))
+let elementHumiAPI: HTMLDivElement = <HTMLDivElement> (document.getElementById("HumiAPI"))
+let elementSkyText: HTMLDivElement = <HTMLDivElement> (document.getElementById("SkyText"))
+let elementWindText: HTMLDivElement = <HTMLDivElement> (document.getElementById("WindText"))
 elementWindow.addEventListener ("loadedAPI", GetTemperatureAPI)
 window.addEventListener("loadAPI", (event)=> {
     GetTemperatureAPI()
