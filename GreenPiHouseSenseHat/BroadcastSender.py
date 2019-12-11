@@ -48,6 +48,28 @@ logo_down = [
     O, O, X, X, X, X, O, O,
     O, O, O, X, X, O, O, O,
 ]
+
+logo_up = [
+    B, O, O, X, X, O, O, B,
+    O, O, X, X, X, X, O, O,
+    O, X, X, X, X, X, X, O,
+    X, X, O, X, X, O, X, X,
+    X, O, O, X, X, O, O, X,
+    O, O, O, X, X, O, O, O,
+    O, O, O, X, X, O, O, O,
+    B, O, O, X, X, O, O, B,
+]
+
+logo_down = [
+    B, O, O, X, X, O, O, B,
+    O, O, O, X, X, O, O, O,
+    O, O, O, X, X, O, O, O,
+    X, O, O, X, X, O, O, X,
+    X, X, O, X, X, O, X, X,
+    O, X, X, X, X, X, X, O,
+    O, O, X, X, X, X, O, O,
+    B, O, O, X, X, O, O, B,
+]
 #---------------------------------
 
 def RESTPost(value):
