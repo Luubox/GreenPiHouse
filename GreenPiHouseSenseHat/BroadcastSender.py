@@ -51,8 +51,8 @@ logo_down = [
 
 def RESTPost(value):
   url = 'https://thegreenerpihouse.azurewebsites.net/api/regulation'
-  myobj = {'Status': value}
-  resp = requests.post(url, data=myobj)
+  myobj = {'Timestamp': datetime.now().replace(microsecond=0), 'Status': value}
+  resp = requests.post(url, json=myobj)
   print(resp)
 
 def lyt():
