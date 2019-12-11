@@ -5,7 +5,7 @@ import axios, {
 
 interface Idata {
     temperature: number,
-        humidity: number,
+    humidity: number,
 }
 
 let elementTemp: HTMLDivElement = < HTMLDivElement > (document.getElementById("temperature"))
@@ -40,8 +40,6 @@ function temperatureValues() {
         console.log(i + "°C")
     }
 }
-
-
 
 function GetTempterature() {
     axios.get < Idata > ("https://thegreenerpihouse.azurewebsites.net/GetLatestData")
@@ -99,7 +97,6 @@ let sunrise: Date
 let sunset: Date
 let conditions: string
 
-
 function GetWeatherData() {
     axios.get < any > ("http://api.openweathermap.org/data/2.5/weather?q=Roskilde&units=Metric&appid=45ca4ad4019ca871293511a2e165a166")
         .then(function (response: AxiosResponse < any > ): void {
@@ -116,7 +113,6 @@ function GetWeatherData() {
 
             // console.log(sunrise + " " + sunset + " " +  conditions)
 
-            apiGetForecastData()
         })
 }
 
@@ -125,7 +121,6 @@ interface iForecastData {
     humidity: number,
     conditions: string
 }
-
 
 function apiGetForecastData() {
     axios.get < any > ("http://api.openweathermap.org/data/2.5/forecast?q=Roskilde&units=Metric&appid=45ca4ad4019ca871293511a2e165a166")
@@ -144,7 +139,5 @@ function apiGetForecastData() {
 
                 console.debug(forecastData)
             }
-
-
         })
 }
