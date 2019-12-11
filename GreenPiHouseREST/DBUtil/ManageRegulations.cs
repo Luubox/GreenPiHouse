@@ -14,7 +14,7 @@ namespace GreenPiHouseREST.DBUtil
             "User ID=dbadmin;Password=Secret123;" +
             "Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-        private const String Insert = "INSERT INTO Regulation VALUES (@Status)";
+        private const String Insert = "INSERT INTO Regulation VALUES (@Timestamp, @Status)";
         private const String GetAll = "SELECT * FROM Regulation";
 
 
@@ -25,6 +25,7 @@ namespace GreenPiHouseREST.DBUtil
             {
                 conn.Open();
                 cmd.Parameters.AddWithValue("@Status", value.Status);
+                cmd.Parameters.AddWithValue("@Timestamp", value.Timestamp);
                 return cmd.ExecuteNonQuery();
             }
         }

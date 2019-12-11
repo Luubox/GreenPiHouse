@@ -1,17 +1,18 @@
-import json
+import requests
+from datetime import datetime
 
-class Data:
-  def __init__(self, temperature, humidity):
-    self.temperature = temperature
-    self.humidity = humidity
+# class Regulation():
 
-  def __str__(self):
-    return f'Temperature: {self.temperature}, Humidity: {self.humidity}'
 
-dataobj = Data(299, 45)
+def RESTPost(value):
+  # url = 'https://thegreenerpihouse.azurewebsites.net/api/regulation'
+  url = 'http://localhost:61399/api/regulation'
+  nowtime =  str(datetime.now().date()) + "T" + str(datetime.now().time())
+  myobj = {"Timestamp": nowtime, "Status": value }
+  resp = requests.post(url, json=myobj)
+  print(resp)
 
-m = {'Temperature': dataobj.temperature, 'Humidity': dataobj.humidity}
-n = json.dump(m)
-o = json.load(m)
-
-print (o['Temperature'], o['Humidity'])
+if __name__ == "__main__":
+  RESTPost(1)
+  data = requests.get('http://localhost:61399/GetAllRegulations')
+  print(data.json())

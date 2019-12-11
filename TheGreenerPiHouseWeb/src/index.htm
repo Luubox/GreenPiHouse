@@ -11,122 +11,116 @@
   <link rel="stylesheet" href="./scss/styles.scss">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body id="body">
   <div class="container">
-    <div class="row">
-
-      <div class="col"></div>
-      <div class="col"></div>
-
+    <div class="row" style="border-style: solid;">
       <div class="col">
-        <h1>GreenPiHouse</h1>
+        <h1 style="text-align: center;">GreenPiHouse</h1>
       </div>
-      <div class="col"></div>
-      <div class="col"></div>
     </div>
 
-    <div class="col">
-      <div class="row">
-        <div class="col-8">
-          <div class="col-8">
-
-            <div class="col-4">
-              <h1>Temperatur</h1>
-              <div id="temperature"></div>
-              <h6>Indtast ønskede temperatur: </h6>
-              <select id="selectTemp">
-                <option>Vælg temperatur</option>
-                <option>0​°C</option>
-                <option>1°C</option>
-                <option>2°C</option>
-                <option>3​°C</option>
-                <option>4°C</option>
-                <option>5​°C</option>
-                <option>6​°C</option>
-                <option>7​°C</option>
-                <option>8°C</option>
-                <option>9​°C</option>
-                <option>10​°C</option>
-                <option>11​°C</option>
-                <option>12​°C</option>
-                <option>13​°C</option>
-                <option>14​°C</option>
-                <option>15​°C</option>
-                <option>16°C</option>
-                <option>17​°C</option>
-                <option>18​°C</option>
-                <option>19​°C</option>
-                <option>20​°C</option>
-                <option>21​°C</option>
-                <option>22​°C</option>
-                <option>23​°C</option>
-                <option>24​°C</option>
-                <option>25​°C</option>
-                <option>26°C</option>
-                <option>27​°C</option>
-                <option>28°C</option>
-                <option>29​°C</option>
-                <option>30​°C</option>
-                <option>31​°C</option>
-                <option>32​°C</option>
-                <option>33​°C</option>
-                <option>34​°C</option>
-                <option>35​°C</option>
-                <option>36​°C</option>
-                <option>37​°C</option>
-                <option>38​°C</option>
-                <option>39​°C</option>
-                <option>40​°C</option>
-              </select>
-              <button id="chooseTempButton">Indstil</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-4">
-          <h1>Luftighed</h1>
-          <div id="humidity"></div>
-          <h6>Indtast ønskede luftfugtighed: </h6>
-          <select id="selectHumi">
-            <option>Vælg luftfugtighed</option>
-            <option>40%</option>
-            <option>41%</option>
-            <option>42%</option>
-            <option>43%</option>
-            <option>44%</option>
-            <option>45%</option>
-            <option>46%</option>
-            <option>47%</option>
-            <option>48%</option>
-            <option>49%</option>
-            <option>50%</option>
-            <option>51%</option>
-            <option>52%</option>
-            <option>53%</option>
-            <option>54%</option>
-            <option>55%</option>
-            <option>56%</option>
-            <option>57%</option>
-            <option>58%</option>
-            <option>59%</option>
-            <option>60%</option>
-          </select>
-          <button id="chooseTempButton">Indstil</button>
-        </div>
+    <div class="row" style="border-style: solid;">
+      <div class="col-6" style="border-style: solid;">
+        <h1>Temperatur</h1>
+        <div id="temperature"></div>
+        <h6>Indtast ønskede temperatur: </h6>
+        <select id="selectTemp">
+          <option>Vælg temperatur</option>
+          <option>0​°C</option>
+          <option>1°C</option>
+          <option>2°C</option>
+          <option>3​°C</option>
+          <option>4°C</option>
+          <option>5​°C</option>
+          <option>6​°C</option>
+          <option>7​°C</option>
+          <option>8°C</option>
+          <option>9​°C</option>
+          <option>10​°C</option>
+          <option>11​°C</option>
+          <option>12​°C</option>
+          <option>13​°C</option>
+          <option>14​°C</option>
+          <option>15​°C</option>
+          <option>16°C</option>
+          <option>17​°C</option>
+          <option>18​°C</option>
+          <option>19​°C</option>
+          <option>20​°C</option>
+          <option>21​°C</option>
+          <option>22​°C</option>
+          <option>23​°C</option>
+          <option>24​°C</option>
+          <option>25​°C</option>
+          <option>26°C</option>
+          <option>27​°C</option>
+          <option>28°C</option>
+          <option>29​°C</option>
+          <option>30​°C</option>
+          <option>31​°C</option>
+          <option>32​°C</option>
+          <option>33​°C</option>
+          <option>34​°C</option>
+          <option>35​°C</option>
+          <option>36​°C</option>
+          <option>37​°C</option>
+          <option>38​°C</option>
+          <option>39​°C</option>
+          <option>40​°C</option>
+        </select>
+        <button id="chooseTempButton">Indstil</button>
       </div>
-      <!-- <div class="row">
-        <div class="col-8">
-          <h1>Status for vindue</h1>
-        </div>
-        <div class="col-4">
-          <h1>Status for vanding af planter</h1>
-        </div>
-      </div> -->
+
+      <div class="col-6" style="border-style: solid;">
+        <h1>Luftfugtighed</h1>
+        <div id="humidity"></div>
+        <h6>Indtast ønskede luftfugtighed: </h6>
+        <select id="selectHumi">
+          <option>Vælg luftfugtighed</option>
+          <option>40%</option>
+          <option>41%</option>
+          <option>42%</option>
+          <option>43%</option>
+          <option>44%</option>
+          <option>45%</option>
+          <option>46%</option>
+          <option>47%</option>
+          <option>48%</option>
+          <option>49%</option>
+          <option>50%</option>
+          <option>51%</option>
+          <option>52%</option>
+          <option>53%</option>
+          <option>54%</option>
+          <option>55%</option>
+          <option>56%</option>
+          <option>57%</option>
+          <option>58%</option>
+          <option>59%</option>
+          <option>60%</option>
+        </select>
+        <button id="chooseTempButton">Indstil</button>
+      </div>
+    </div>
+
+    <div class="row" style="border-style: solid;">
+
+      <div class="col" style="border-style: solid;">
+        <h3>Status for vindue</h3>
+        <i class="material-icons">keyboard_arrow_down</i>
+        <i class="material-icons">keyboard_arrow_up</i>
+
+      </div>
+      <div class="col" style="border-style: solid;">
+        <h3>Status for vanding af planter</h3>
+      </div>
     </div>
   </div>
-</div>
+
   <!-- <button id="startbutton">Get all the entries</button>
       <button id="Latestbutton">Get the latest temperature and humidity</button> -->
   <!-- Optional JavaScript -->
@@ -143,6 +137,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
+
 
 </body>
 

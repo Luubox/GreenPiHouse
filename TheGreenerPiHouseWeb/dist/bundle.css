@@ -28,3 +28,9 @@ input {
 
 allign {
   text-align: center; }
+
+.row {
+  border-style: solid; }
+
+.col {
+  border-style: solid; }
