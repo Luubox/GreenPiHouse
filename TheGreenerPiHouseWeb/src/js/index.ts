@@ -13,7 +13,8 @@ let elementHumi: HTMLDivElement = < HTMLDivElement > (document.getElementById("h
 
 let elementTempOut: HTMLDivElement = < HTMLDivElement > (document.getElementById("tmpout"))
 let elementHumiOut: HTMLDivElement = < HTMLDivElement > (document.getElementById("humout"))
-let testbtn: HTMLButtonElement = < HTMLButtonElement > (document.getElementById("testButton"))
+let updateWeatherBtn: HTMLButtonElement = < HTMLButtonElement > (document.getElementById("updateWeather"))
+let updateForecastBtn: HTMLButtonElement = < HTMLButtonElement > (document.getElementById("updateForecast"))
 
 let elementWindow: HTMLBodyElement = < HTMLBodyElement > (document.getElementById("body"))
 elementWindow.addEventListener("loadend", GetTempterature)
@@ -25,7 +26,8 @@ window.addEventListener("load", (event) => {
 let temperatureSelector: HTMLOptionElement = < HTMLOptionElement > (document.getElementById("temperatureOption"))
 
 
-testbtn.addEventListener("click", GetWeatherData)
+updateWeatherBtn.addEventListener("click", apiGetWeatherData)
+updateForecastBtn.addEventListener("click", apiGetForecastData)
 
 //let elementButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("startbutton"))
 // let LatestButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("Latestbutton"))
@@ -93,11 +95,12 @@ function GetLatest() {
         })
 }
 
+//skal bruges til pi??
 let sunrise: Date
 let sunset: Date
 let conditions: string
 
-function GetWeatherData() {
+function apiGetWeatherData() {
     axios.get < any > ("http://api.openweathermap.org/data/2.5/weather?q=Roskilde&units=Metric&appid=45ca4ad4019ca871293511a2e165a166")
         .then(function (response: AxiosResponse < any > ): void {
             // console.log(response.data)
@@ -129,15 +132,15 @@ function apiGetForecastData() {
             let forecastData: iForecastData[]
             let tmp: iForecastData
 
-            for (let i = 0; i < 39; i + 8) {
+            console.debug(forecastData)
+            // for (let i = 0; i < 39; i + 8) {
             
-                // tmp.temp = response.data[i].main.temp
-                // tmp.humidity = response.data[i].main.humidity
-                // tmp.conditions = response.data[i].main.conditions
+            //     // tmp.temp = response.data[i].main.temp
+            //     // tmp.humidity = response.data[i].main.humidity
+            //     // tmp.conditions = response.data[i].main.conditions
 
-                // forecastData.push(tmp)
+            //     // forecastData.push(tmp)
 
-                console.debug(forecastData)
-            }
+            // }
         })
 }
