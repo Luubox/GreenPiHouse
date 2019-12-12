@@ -1,3 +1,4 @@
+
 BROADCAST_TO_PORT = 10100
 from sense_hat import SenseHat
 import time
@@ -6,8 +7,11 @@ from datetime import datetime
 import requests
 
 #---Test af optimale værdier------
-optimal_temp = float(input("Indtast den optimale temperatur: "))
-optimal_hum = float(input("Indtast den optimale luftfugtighed: "))
+#optimal_temp = float(input("Indtast den optimale temperatur: "))
+#optimal_hum = float(input("Indtast den optimale luftfugtighed: "))
+
+optimal_temp = 20.0
+optimal_hum = 45.0
 
 time_interval = ["09:50", "10:00", "10:10", "10:20", "10:30", "10:40", "10:50"]
 #---------------------------------
@@ -78,7 +82,15 @@ logo_down_wet = [
 def RESTPost(value):
   url = 'https://thegreenerpihouse.azurewebsites.net/api/regulation'
   nowtime =  str(datetime.now().date()) + "T" + str(datetime.now().time().replace(microsecond=0))
+  print (nowtime)
   myobj = {'timestamp': nowtime, 'status': value }
+  print(myobj)
+  resp = requests.post(url, json=myobj)
+  print(resp)
+
+def RESTPostwet(value):
+  url = 'https://thegreenerpihouse.azurewebsites.net/api/waterloo'
+  myobj = {'status': value }
   resp = requests.post(url, json=myobj)
   print(resp)
 
@@ -101,19 +113,19 @@ def compareValues(temp, hum):
     print(" ")
     s.clear()
     if len(s.stick.get_events()) > 0:
-      s.set_pixel(0,0,0,0,255)
+      s.set_pixel(0,0,0,255,0)
     RESTPost(False)
   elif temp > optimal_temp or hum > optimal_hum:
     print("Over")
     s.set_pixels(logo_up)
     if len(s.stick.get_events()) > 0:
-      s.set_pixel(0,0,0,0,255)
+      s.set_pixel(0,0,0,255,0)
     RESTPost(True)
   elif temp < optimal_temp or hum < optimal_hum:
     print("Under")
     s.set_pixels(logo_down)
     if len(s.stick.get_events()) > 0:
-      s.set_pixel(0,0,0,0,255)
+      s.set_pixel(0,0,0,255,0)
     RESTPost(False)
   else:
     print("Fejl")
@@ -130,16 +142,24 @@ def main():
     temp = round(temp, 1)
     humi = round(humi, 1)
 
-    print("Temperature: " + str(temp) + " C")
-    print("Humidity: " + str(humi) + " %")
+#    print("Temperature: " + str(temp) + " C")
+#    print("Humidity: " + str(humi) + " %")
 
     if i == 1:
-      broadcast(temp, humi)
+#      broadcast(temp, humi)
       i = 0
 
     compareValues(temp, humi)
 
-    print(len(s.stick.get_events()))
+#    print(s.stick.get_events())
+    arr = s.stick.get_events()
+    if len(arr) != 0:
+      if arr[0].direction == "down":
+        RESTPostwet(True)
+        s.set_pixel(0,0,0,0,255)
+      else:
+        RESTPostwet(False)
+        s.set_pixel(0,0,255,0,0)
 
     time.sleep(1)
     i += 1
