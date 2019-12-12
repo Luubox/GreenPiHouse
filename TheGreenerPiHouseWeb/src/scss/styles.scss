@@ -1,39 +1,28 @@
-$fontColor: #0091aa;
-$colorHeading: #be4a14;
-#content  // div with id: content
-{
-    color: $fontColor;
-}
-
-h2
-{
-    color: $colorHeading;
-}
-
-h1{
-    @extend h2;
-}
-
 #content {
-    color: #0091aa; }
-  
-  h2, h1 {
-    color: #be4a14; }
-  
+  color: #0091aa;
+}
+
+h2,
+h1 {
+  color: #be4a14;
+}
 
 .grid-container {
   display: grid;
   grid: auto-flow / auto 1fr;
 }
+
 .li {
   grid-column: span 2;
   display: grid;
   grid-template-columns: subgrid;
   border: solid;
 }
+
 label {
   grid-column: 1;
 }
+
 input {
   grid-column: 2;
 }
@@ -48,4 +37,8 @@ allign {
 
 .col {
   border-style: solid;
+}
+
+.top-buffer {
+  margin-top: 20px;
 }

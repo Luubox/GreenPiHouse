@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 
+<!-- virk fuck sake!-->
 <head>
   <title>GreenPiHouse</title>
   <!-- Required meta tags -->
@@ -8,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="./scss/styles.scss">
+  <link rel="stylesheet" href="./scss/styles.scss" type="text/html">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -16,18 +17,20 @@
 </head>
 
 <body id="body">
-  <div class="container">
+  <div class="container" style="border-style: solid;">
     <div class="row" style="border-style: solid;">
       <div class="col">
         <h1 style="text-align: center;">GreenPiHouse</h1>
       </div>
     </div>
 
-    <div class="row" style="border-style: solid;">
-      <div class="col-6" style="border-style: solid;">
+    <div class="row" style="padding: 1cm">
+      <div id="temperatureInside" class="col-sm-6" style="text-align: center;">
         <h1>Temperatur</h1>
-        <div id="temperature"></div>
+        <div  id="temperature"></div>
         <h6>Indtast ønskede temperatur: </h6>
+        <div id="temperatureOption"></div>
+
         <select id="selectTemp">
           <option>Vælg temperatur</option>
           <option>0​°C</option>
@@ -75,7 +78,7 @@
         <button id="chooseTempButton">Indstil</button>
       </div>
 
-      <div class="col-6" style="border-style: solid;">
+      <div id="humidityInside" class="col-sm-6" style="text-align: center;">
         <h1>Luftfugtighed</h1>
         <div id="humidity"></div>
         <h6>Indtast ønskede luftfugtighed: </h6>
@@ -103,22 +106,75 @@
           <option>59%</option>
           <option>60%</option>
         </select>
-        <button id="chooseTempButton">Indstil</button>
+        <button id="chooseHumiButton">Indstil</button>
       </div>
     </div>
 
-    <div class="row" style="border-style: solid;">
+    <div class="row" style="padding: 1cm">
 
-      <div class="col" style="border-style: solid;">
+      <div class="col-sm-6" style="text-align: center;">
+        <h1>Ude temperatur</h1>
+        <div id="tmpout">35°C</div>
+        <i style="font-size: 35px;" class="material-icons" id="updateWeather">refresh</i>
+      </div>
+
+      <div class="col-sm-6"style="text-align: center;">
+        <h1>Ude luftfugtighed</h1>
+        <div id="humout">50%</div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1cm">
+      <div class="col-sm">
+        <h1 style="text-align: center;">
+          5 dages prognose
+          <i style="font-size: 35px;" class="material-icons" id="updateForecast">refresh</i>
+        </h1>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1cm">
+      <div class="col-sm" style="text-align: center;">
+          <h1><div id="day1day">Dag 1</div></h1>
+          <div id="day1temp">35°C</div>
+          <div id="day1hum">50%</div>
+      </div>
+      <div class="col-sm" style="text-align: center;">
+          <h1><div id="day2day">Dag 2</div></h1>
+          <div id="day2temp">35°C</div>
+          <div id="day2hum">50%</div>
+      </div>
+      <div class="col-sm" style="text-align: center;">
+          <h1><div id="day3day">Dag 3</div></h1>
+          <div id="day3temp">35°C</div>
+          <div id="day3hum">50%</div>
+      </div>
+      <div class="col-sm" style="text-align: center;">
+          <h1><div id="day4day">Dag 4</div></h1>
+          <div id="day4temp">35°C</div>
+          <div id="day4hum">50%</div>
+      </div>
+      <div class="col-sm" style="text-align: center;">
+          <h1><div id="day5day">Dag 5</div></h1>
+          <div id="day5temp">35°C</div>
+          <div id="day5hum">50%</div>
+      </div>
+    </div>
+
+    <div class="row"style="padding: 1cm">
+
+      <div class="col-sm" style="text-align: center;">
         <h3>Status for vindue</h3>
-        <i class="material-icons">keyboard_arrow_down</i>
-        <i class="material-icons">keyboard_arrow_up</i>
+        <i style="font-size: 80px;" style="text-align: center;" class="material-icons">keyboard_arrow_down</i>
+        <i style="font-size: 80px;" style="text-align: center;" class="material-icons">keyboard_arrow_up</i>
 
       </div>
-      <div class="col" style="border-style: solid;">
+      <div class="col-sm" style="text-align: center;">
         <h3>Status for vanding af planter</h3>
+        <i style="font-size: 80px;" style="text-align: center;" class="material-icons md-48">local_florist</i>
       </div>
     </div>
+
   </div>
 
   <!-- <button id="startbutton">Get all the entries</button>
