@@ -49,7 +49,8 @@ namespace GreenPiHouseREST.DBUtil
         public Waterloo GetLatest()
         {
             IEnumerable<Waterloo> getLatestList = Get();
-            return getLatestList.Last();        }
+            return getLatestList.Last();
+        }
 
         protected Waterloo ReadNextElement(SqlDataReader reader)
         {
