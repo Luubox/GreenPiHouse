@@ -5,7 +5,7 @@ import axios, {
 
 interface Idata {
     temperature: number,
-    humidity: number,
+        humidity: number,
 }
 
 //virk nu forhelvede
@@ -54,23 +54,56 @@ let selectButtonTemp: HTMLButtonElement = <HTMLButtonElement> (document.getEleme
 let selectButtonHumi: HTMLButtonElement = <HTMLButtonElement> (document.getElementById ("chooseHumiButton"))
 selectButtonTemp.addEventListener("click", changeSelectedItemTemp)
 selectButtonHumi.addEventListener("click", changeSelectedItemHumi)
+let showIconWater: HTMLElement = < HTMLElement > (document.getElementById("vandeIkon"))
+let showIconWindow: HTMLElement = < HTMLElement > (document.getElementById("vindueIkon"))
 updateWeatherBtn.addEventListener("click", apiGetWeatherData)
 updateForecastBtn.addEventListener("click", apiGetForecastData)
 
-let showIcon: HTMLElement = <HTMLElement> (document.getElementById ("vandeIkon"))
-let timerId = setInterval(() => ChangeIcon("start"), 1000);
 
-setTimeout(() => { clearInterval(timerId); ChangeIcon("stop"); }, 12000);
+// let timerId = setInterval(() => ChangeIcon("start"), 1000);
+
+// setTimeout(() => {
+//     clearInterval(timerId);
+//     ChangeIcon("stop");
+// }, 12000);
 
 
-function ChangeIcon(value: string){
-    
-    if (value == "start") {
-        showIcon.innerHTML = "4k"
-    }
-    else{
-        showIcon.innerHTML = "local_florist"
-    }
+// function ChangeIcon(value: string) {
+
+//     if (value == "start") {
+//         showIcon.innerHTML = "opacity"
+//     } else {
+//         showIcon.innerHTML = "eco"
+//     }
+// }
+let waterButton: HTMLElement = < HTMLElement > (document.getElementById("waterButton"))
+waterButton.addEventListener("click", changeWaterIcon)
+
+let windowButton: HTMLElement = < HTMLElement > (document.getElementById("windowButton"))
+windowButton.addEventListener("click", changeWindowIcon)
+
+function changeWaterIcon() {
+    axios.get < any > ("https://thegreenerpihouse.azurewebsites.net/GetLatestWaterloo")
+        .then(function (response: AxiosResponse < any > ): void {
+            console.log(response.data)
+            if (response.data.status) {
+                showIconWater.innerHTML = "opacity"
+            } else {
+                showIconWater.innerHTML = "eco"
+            }
+        })
+}
+
+function changeWindowIcon() {
+    axios.get < any > ("https://thegreenerpihouse.azurewebsites.net/GetLatestRegulation")
+        .then(function (response: AxiosResponse < any > ): void {
+            console.log(response.data)
+            if (response.data.status) {
+                showIconWindow.innerHTML = "keyboard_arrow_up"
+            } else {
+                showIconWindow.innerHTML = "keyboard_arrow_down"
+            }
+        })
 }
 
 
@@ -84,6 +117,12 @@ function changeSelectedItemHumi() {
     console.log(selectedValueHumi[selectedValueHumi.selectedIndex])
 }
 console.log(selectedValueHumi[selectedValueHumi.selectedIndex])
+
+//let elementButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("startbutton"))
+// let LatestButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("Latestbutton"))
+// elementButton.addEventListener("click", GetAll)
+// LatestButton.addEventListener("click", GetLatest)
+
 
 function GetTempterature() {
     axios.get < Idata > ("https://thegreenerpihouse.azurewebsites.net/GetLatestData")
@@ -137,6 +176,7 @@ function GetLatest() {
         })
 }
 
+
 //skal bruges til pi??
 let sunrise: Date
 let sunset: Date
@@ -163,9 +203,9 @@ function apiGetWeatherData() {
 
 interface iForecastData {
     temp: number,
-    humidity: number,
-    conditions: string,
-    day: string
+        humidity: number,
+        conditions: string,
+        day: string
 }
 
 var days = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
@@ -176,48 +216,49 @@ function apiGetForecastData() {
         .then(function (response: AxiosResponse < any > ): void {
 
             let forecastData: iForecastData[] = []
-            
+
             let i: number = 0
             while (i < 39) {
-                let tmp: iForecastData = {} as iForecastData
-                
+                let tmp: iForecastData = {}
+                as iForecastData
+
                 tmp.temp = response.data.list[i].main.temp
                 tmp.humidity = response.data.list[i].main.humidity
                 tmp.conditions = response.data.list[i].weather[0].main
 
                 var d = new Date(response.data.list[i].dt_txt);
-                tmp.day =  days[d.getDay()];
+                tmp.day = days[d.getDay()];
 
                 forecastData.push(tmp)
 
                 console.log(forecastData)
-                
-                
+
+
                 i = i + 8
             }
-            
+
             // console.log(forecastData)
 
             day1DayElement.innerHTML = forecastData[0].day
             day1TempElement.innerHTML = forecastData[0].temp + "°C"
             day1HumiElement.innerHTML = forecastData[0].humidity + "%"
 
-            
+
             day2DayElement.innerHTML = forecastData[1].day
             day2TempElement.innerHTML = forecastData[1].temp + "°C"
             day2HumiElement.innerHTML = forecastData[1].humidity + "%"
 
-            
+
             day3DayElement.innerHTML = forecastData[2].day
             day3TempElement.innerHTML = forecastData[2].temp + "°C"
             day3HumiElement.innerHTML = forecastData[2].humidity + "%"
 
-            
+
             day4DayElement.innerHTML = forecastData[3].day
             day4TempElement.innerHTML = forecastData[3].temp + "°C"
             day4HumiElement.innerHTML = forecastData[3].humidity + "%"
 
-            
+
             day5DayElement.innerHTML = forecastData[4].day
             day5TempElement.innerHTML = forecastData[4].temp + "°C"
             day5HumiElement.innerHTML = forecastData[4].humidity + "%"

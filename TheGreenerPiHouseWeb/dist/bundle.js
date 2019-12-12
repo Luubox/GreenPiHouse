@@ -2104,18 +2104,49 @@ var selectButtonTemp = (document.getElementById("chooseTempButton"));
 var selectButtonHumi = (document.getElementById("chooseHumiButton"));
 selectButtonTemp.addEventListener("click", changeSelectedItemTemp);
 selectButtonHumi.addEventListener("click", changeSelectedItemHumi);
+var showIconWater = (document.getElementById("vandeIkon"));
+var showIconWindow = (document.getElementById("vindueIkon"));
 updateWeatherBtn.addEventListener("click", apiGetWeatherData);
 updateForecastBtn.addEventListener("click", apiGetForecastData);
-var showIcon = (document.getElementById("vandeIkon"));
-var timerId = setInterval(function () { return ChangeIcon("start"); }, 1000);
-setTimeout(function () { clearInterval(timerId); ChangeIcon("stop"); }, 12000);
-function ChangeIcon(value) {
-    if (value == "start") {
-        showIcon.innerHTML = "4k";
-    }
-    else {
-        showIcon.innerHTML = "local_florist";
-    }
+// let timerId = setInterval(() => ChangeIcon("start"), 1000);
+// setTimeout(() => {
+//     clearInterval(timerId);
+//     ChangeIcon("stop");
+// }, 12000);
+// function ChangeIcon(value: string) {
+//     if (value == "start") {
+//         showIcon.innerHTML = "opacity"
+//     } else {
+//         showIcon.innerHTML = "eco"
+//     }
+// }
+var waterButton = (document.getElementById("waterButton"));
+waterButton.addEventListener("click", changeWaterIcon);
+var windowButton = (document.getElementById("windowButton"));
+windowButton.addEventListener("click", changeWindowIcon);
+function changeWaterIcon() {
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://thegreenerpihouse.azurewebsites.net/GetLatestWaterloo")
+        .then(function (response) {
+        console.log(response.data);
+        if (response.data.status) {
+            showIconWater.innerHTML = "opacity";
+        }
+        else {
+            showIconWater.innerHTML = "eco";
+        }
+    });
+}
+function changeWindowIcon() {
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://thegreenerpihouse.azurewebsites.net/GetLatestRegulation")
+        .then(function (response) {
+        console.log(response.data);
+        if (response.data.status) {
+            showIconWindow.innerHTML = "keyboard_arrow_up";
+        }
+        else {
+            showIconWindow.innerHTML = "keyboard_arrow_down";
+        }
+    });
 }
 function changeSelectedItemTemp() {
     console.log(selectedValueTemp[selectedValueTemp.selectedIndex]);
@@ -2125,6 +2156,10 @@ function changeSelectedItemHumi() {
     console.log(selectedValueHumi[selectedValueHumi.selectedIndex]);
 }
 console.log(selectedValueHumi[selectedValueHumi.selectedIndex]);
+//let elementButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("startbutton"))
+// let LatestButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("Latestbutton"))
+// elementButton.addEventListener("click", GetAll)
+// LatestButton.addEventListener("click", GetLatest)
 function GetTempterature() {
     _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://thegreenerpihouse.azurewebsites.net/GetLatestData")
         .then(function (response) {
@@ -2199,6 +2234,8 @@ function apiGetForecastData() {
         var i = 0;
         while (i < 39) {
             var tmp = {};
+            as;
+            iForecastData;
             tmp.temp = response.data.list[i].main.temp;
             tmp.humidity = response.data.list[i].main.humidity;
             tmp.conditions = response.data.list[i].weather[0].main;
