@@ -9,7 +9,6 @@ interface Idata {
 }
 
 //virk nu forhelvede
-
 let elementTemp: HTMLDivElement = < HTMLDivElement > (document.getElementById("temperature"))
 let elementHumi: HTMLDivElement = < HTMLDivElement > (document.getElementById("humidity"))
 
@@ -48,22 +47,43 @@ window.addEventListener("load", (event) => {
     GetHumidity()
 })
 
+let selectedValueTemp: HTMLSelectElement = <HTMLSelectElement> (document.getElementById("selectTemp"))
+let selectedValueHumi: HTMLSelectElement = <HTMLSelectElement> (document.getElementById("selectHumi"))
+
+let selectButtonTemp: HTMLButtonElement = <HTMLButtonElement> (document.getElementById ("chooseTempButton"))
+let selectButtonHumi: HTMLButtonElement = <HTMLButtonElement> (document.getElementById ("chooseHumiButton"))
+selectButtonTemp.addEventListener("click", changeSelectedItemTemp)
+selectButtonHumi.addEventListener("click", changeSelectedItemHumi)
 updateWeatherBtn.addEventListener("click", apiGetWeatherData)
 updateForecastBtn.addEventListener("click", apiGetForecastData)
 
-//let elementButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("startbutton"))
-// let LatestButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("Latestbutton"))
-// elementButton.addEventListener("click", GetAll)
-// LatestButton.addEventListener("click", GetLatest)
+let showIcon: HTMLElement = <HTMLElement> (document.getElementById ("vandeIkon"))
+let timerId = setInterval(() => ChangeIcon("start"), 1000);
 
-let clickValueTemp: HTMLButtonElement = < HTMLButtonElement > (document.getElementById("chooseTempButton"))
-let clickValueHumi: HTMLButtonElement = < HTMLButtonElement > (document.getElementById("chooseHumiButton"))
+setTimeout(() => { clearInterval(timerId); ChangeIcon("stop"); }, 12000);
 
-function temperatureValues() {
-    for (let i = 0; i < 40; i++) {
-        console.log(i + "°C")
+
+function ChangeIcon(value: string){
+    
+    if (value == "start") {
+        showIcon.innerHTML = "4k"
+    }
+    else{
+        showIcon.innerHTML = "local_florist"
     }
 }
+
+
+function changeSelectedItemTemp() {
+    console.log(selectedValueTemp[selectedValueTemp.selectedIndex])
+}
+console.log(selectedValueTemp[selectedValueTemp.selectedIndex])
+
+
+function changeSelectedItemHumi() {
+    console.log(selectedValueHumi[selectedValueHumi.selectedIndex])
+}
+console.log(selectedValueHumi[selectedValueHumi.selectedIndex])
 
 function GetTempterature() {
     axios.get < Idata > ("https://thegreenerpihouse.azurewebsites.net/GetLatestData")

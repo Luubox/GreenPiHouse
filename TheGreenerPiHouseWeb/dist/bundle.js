@@ -2098,19 +2098,33 @@ window.addEventListener("load", function (event) {
     GetTempterature();
     GetHumidity();
 });
+var selectedValueTemp = (document.getElementById("selectTemp"));
+var selectedValueHumi = (document.getElementById("selectHumi"));
+var selectButtonTemp = (document.getElementById("chooseTempButton"));
+var selectButtonHumi = (document.getElementById("chooseHumiButton"));
+selectButtonTemp.addEventListener("click", changeSelectedItemTemp);
+selectButtonHumi.addEventListener("click", changeSelectedItemHumi);
 updateWeatherBtn.addEventListener("click", apiGetWeatherData);
 updateForecastBtn.addEventListener("click", apiGetForecastData);
-//let elementButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("startbutton"))
-// let LatestButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("Latestbutton"))
-// elementButton.addEventListener("click", GetAll)
-// LatestButton.addEventListener("click", GetLatest)
-var clickValueTemp = (document.getElementById("chooseTempButton"));
-var clickValueHumi = (document.getElementById("chooseHumiButton"));
-function temperatureValues() {
-    for (var i = 0; i < 40; i++) {
-        console.log(i + "°C");
+var showIcon = (document.getElementById("vandeIkon"));
+var timerId = setInterval(function () { return ChangeIcon("start"); }, 1000);
+setTimeout(function () { clearInterval(timerId); ChangeIcon("stop"); }, 12000);
+function ChangeIcon(value) {
+    if (value == "start") {
+        showIcon.innerHTML = "4k";
+    }
+    else {
+        showIcon.innerHTML = "local_florist";
     }
 }
+function changeSelectedItemTemp() {
+    console.log(selectedValueTemp[selectedValueTemp.selectedIndex]);
+}
+console.log(selectedValueTemp[selectedValueTemp.selectedIndex]);
+function changeSelectedItemHumi() {
+    console.log(selectedValueHumi[selectedValueHumi.selectedIndex]);
+}
+console.log(selectedValueHumi[selectedValueHumi.selectedIndex]);
 function GetTempterature() {
     _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://thegreenerpihouse.azurewebsites.net/GetLatestData")
         .then(function (response) {
