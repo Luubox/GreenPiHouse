@@ -2208,6 +2208,10 @@ function apiCall() {
     });
 }
 
+<<<<<<< HEAD
+=======
+throw new Error("Module parse failed: Unexpected token (50:7)\nFile was processed with these loaders:\n * ./node_modules/ts-loader/index.js\nYou may need an additional loader to handle the result of these loaders.\n|     }\n| }\n> while ()\n|     function changeSelectedItemTemp() {\n|         console.log(selectedValueTemp[selectedValueTemp.selectedIndex]);");
+>>>>>>> parent of a5aa8e2... Revert "Merge branch 'Densejebranch' into JonasProject3Ny"
 
 /***/ }),
 
