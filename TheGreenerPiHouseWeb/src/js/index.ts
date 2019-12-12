@@ -8,6 +8,7 @@ interface Idata {
     humidity: number,
 }
 
+//virk nu forhelvede
 
 let elementTemp: HTMLDivElement = <HTMLDivElement> (document.getElementById("temperature"))
 let elementHumi: HTMLDivElement = <HTMLDivElement> (document.getElementById("humidity"))
