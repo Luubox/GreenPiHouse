@@ -13,18 +13,18 @@ let elementHumi: HTMLDivElement = < HTMLDivElement > (document.getElementById("h
 
 let elementTempOut: HTMLDivElement = < HTMLDivElement > (document.getElementById("tmpout"))
 let elementHumiOut: HTMLDivElement = < HTMLDivElement > (document.getElementById("humout"))
+
 let updateWeatherBtn: HTMLButtonElement = < HTMLButtonElement > (document.getElementById("updateWeather"))
 let updateForecastBtn: HTMLButtonElement = < HTMLButtonElement > (document.getElementById("updateForecast"))
 
 let elementWindow: HTMLBodyElement = < HTMLBodyElement > (document.getElementById("body"))
+let temperatureSelector: HTMLOptionElement = < HTMLOptionElement > (document.getElementById("temperatureOption"))
+
 elementWindow.addEventListener("loadend", GetTempterature)
 window.addEventListener("load", (event) => {
     GetTempterature()
     GetHumidity()
 })
-
-let temperatureSelector: HTMLOptionElement = < HTMLOptionElement > (document.getElementById("temperatureOption"))
-
 
 updateWeatherBtn.addEventListener("click", apiGetWeatherData)
 updateForecastBtn.addEventListener("click", apiGetForecastData)
