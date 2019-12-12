@@ -2234,8 +2234,6 @@ function apiGetForecastData() {
         var i = 0;
         while (i < 39) {
             var tmp = {};
-            as;
-            iForecastData;
             tmp.temp = response.data.list[i].main.temp;
             tmp.humidity = response.data.list[i].main.humidity;
             tmp.conditions = response.data.list[i].weather[0].main;

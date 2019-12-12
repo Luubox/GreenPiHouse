@@ -219,8 +219,7 @@ function apiGetForecastData() {
 
             let i: number = 0
             while (i < 39) {
-                let tmp: iForecastData = {}
-                as iForecastData
+                let tmp: iForecastData = {} as iForecastData
 
                 tmp.temp = response.data.list[i].main.temp
                 tmp.humidity = response.data.list[i].main.humidity
