@@ -2088,16 +2088,47 @@ var selectButtonTemp = (document.getElementById("chooseTempButton"));
 var selectButtonHumi = (document.getElementById("chooseHumiButton"));
 selectButtonTemp.addEventListener("click", changeSelectedItemTemp);
 selectButtonHumi.addEventListener("click", changeSelectedItemHumi);
-var showIcon = (document.getElementById("vandeIkon"));
-var timerId = setInterval(function () { return ChangeIcon("start"); }, 1000);
-setTimeout(function () { clearInterval(timerId); ChangeIcon("stop"); }, 12000);
-function ChangeIcon(value) {
-    if (value == "start") {
-        showIcon.innerHTML = "4k";
-    }
-    else {
-        showIcon.innerHTML = "local_florist";
-    }
+var showIconWater = (document.getElementById("vandeIkon"));
+var showIconWindow = (document.getElementById("vindueIkon"));
+// let timerId = setInterval(() => ChangeIcon("start"), 1000);
+// setTimeout(() => {
+//     clearInterval(timerId);
+//     ChangeIcon("stop");
+// }, 12000);
+// function ChangeIcon(value: string) {
+//     if (value == "start") {
+//         showIcon.innerHTML = "opacity"
+//     } else {
+//         showIcon.innerHTML = "eco"
+//     }
+// }
+var waterButton = (document.getElementById("waterButton"));
+waterButton.addEventListener("click", changeWaterIcon);
+var windowButton = (document.getElementById("windowButton"));
+windowButton.addEventListener("click", changeWindowIcon);
+function changeWaterIcon() {
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://thegreenerpihouse.azurewebsites.net/GetLatestWaterloo")
+        .then(function (response) {
+        console.log(response.data);
+        if (response.data.status) {
+            showIconWater.innerHTML = "opacity";
+        }
+        else {
+            showIconWater.innerHTML = "eco";
+        }
+    });
+}
+function changeWindowIcon() {
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://thegreenerpihouse.azurewebsites.net/GetLatestRegulation")
+        .then(function (response) {
+        console.log(response.data);
+        if (response.data.status) {
+            showIconWindow.innerHTML = "keyboard_arrow_up";
+        }
+        else {
+            showIconWindow.innerHTML = "keyboard_arrow_down";
+        }
+    });
 }
 function changeSelectedItemTemp() {
     console.log(selectedValueTemp[selectedValueTemp.selectedIndex]);
