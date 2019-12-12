@@ -1,13 +1,8 @@
 #content {
   color: #0091aa; }
 
-h2, h1 {
-  color: #be4a14; }
-
-#content {
-  color: #0091aa; }
-
-h2, h1, h1 {
+h2,
+h1 {
   color: #be4a14; }
 
 .grid-container {
@@ -34,3 +29,6 @@ allign {
 
 .col {
   border-style: solid; }
+
+.top-buffer {
+  margin-top: 20px; }
