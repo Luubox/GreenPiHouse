@@ -23,6 +23,14 @@ namespace GreenPiHouseREST.Controllers
             return manager.Get();
         }
 
+        // GET: /GetLatestRegulation
+        [HttpGet]
+        [Route("/GetLatestRegulation")]
+        public Regulation GetLatestWaterloo()
+        {
+            return manager.GetLatest();
+        }
+
         // POST: api/Regulation
         [HttpPost]
         public void Post([FromBody] Regulation value)

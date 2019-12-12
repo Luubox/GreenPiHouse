@@ -57,5 +57,11 @@ namespace GreenPiHouseREST.DBUtil
 
             return element;
         }
+
+        public Regulation GetLatest()
+        {
+            IEnumerable<Regulation> getLatestList = Get();
+            return getLatestList.Last();
+        }
     }
 }
