@@ -104,7 +104,7 @@ module.exports = __webpack_require__.p + "index.htm";
 /*! no exports provided */
 /***/ (function(module, exports) {
 
-throw new Error("Module parse failed: Unexpected token (50:7)\nFile was processed with these loaders:\n * ./node_modules/ts-loader/index.js\nYou may need an additional loader to handle the result of these loaders.\n|     }\n| }\n> while ()\n|     function changeSelectedItemTemp() {\n|         console.log(selectedValueTemp[selectedValueTemp.selectedIndex]);");
+throw new Error("Module parse failed: Unexpected token (31:7)\nFile was processed with these loaders:\n * ./node_modules/ts-loader/index.js\nYou may need an additional loader to handle the result of these loaders.\n|     }\n| }\n> while ()\n|     function changeSelectedItemTemp() {\n|         console.log(selectedValueTemp[selectedValueTemp.selectedIndex]);");
 
 /***/ }),
 
