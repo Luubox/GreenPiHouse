@@ -13,25 +13,30 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <style type="text/css">
+    h1 {
+      font-size: 5vw;
+    }
+  </style>
 </head>
 
 <body id="body">
   <div class="container" style="border-style: solid;">
     <div class="row" style="border-style: solid;">
-      <div class="col">
+      <div class="col" style="font-size: 5vw;">
         <h1 style="text-align: center;">GreenPiHouse</h1>
       </div>
     </div>
 
     <div class="row" style="padding: 1cm">
       <div id="temperatureInside" class="col-sm-6" style="text-align: center;">
-        <h1>Temperatur</h1>
-        <div  id="temperature"></div>
+        <h1 style="font-size: 5vw">Temperatur</h1>
+        <div style="font-size: 5vw" ; id="temperature"></div>
         <h6>Indtast ønskede temperatur: </h6>
         <div id="temperatureOption"></div>
 
         <select id="selectTemp">
-          <option>Vælg temperatur</option>
           <option>0​°C</option>
           <option>1°C</option>
           <option>2°C</option>
@@ -78,11 +83,10 @@
       </div>
 
       <div id="humidityInside" class="col-sm-6" style="text-align: center;">
-        <h1>Luftfugtighed</h1>
-        <div id="humidity"></div>
+        <h1 style="font-size: 5vw">Luftfugtighed</h1>
+        <div style="font-size: 5vw" id="humidity"></div>
         <h6>Indtast ønskede luftfugtighed: </h6>
         <select id="selectHumi">
-          <option>Vælg luftfugtighed</option>
           <option>40%</option>
           <option>41%</option>
           <option>42%</option>
@@ -112,14 +116,14 @@
     <div class="row" style="padding: 1cm">
 
       <div class="col-sm-6" style="text-align: center;">
-        <h1>Ude temperatur</h1>
-        <div id="tmpout">35°C</div>
+        <h1 style="font-size: 5vw">Ude temperatur</h1>
+        <div style="font-size: 5vw" id="tmpout">35°C</div>
         <i style="font-size: 80px;" class="material-icons" id="testButton">refresh</i>
       </div>
 
-      <div class="col-sm-6"style="text-align: center;">
-        <h1>Ude luftfugtighed</h1>
-        <div id="humout">50%</div>
+      <div class="col-sm-6" style="text-align: center;">
+        <h1 style="font-size: 5vw">Ude luftfugtighed</h1>
+        <div style="font-size: 5vw" id="humout">50%</div>
       </div>
     </div>
 
@@ -134,20 +138,20 @@
         <h1>Dag 1</h1>
       </div>
       <div class="col-sm" style="text-align: center;">
-          <h1>Dag 2</h1>
+        <h1>Dag 2</h1>
       </div>
       <div class="col-sm" style="text-align: center;">
-          <h1>Dag 3</h1>
+        <h1>Dag 3</h1>
       </div>
       <div class="col-sm" style="text-align: center;">
-          <h1>Dag 4</h1>
+        <h1>Dag 4</h1>
       </div>
       <div class="col-sm" style="text-align: center;">
-          <h1>Dag 5</h1>
+        <h1>Dag 5</h1>
       </div>
     </div>
 
-    <div class="row"style="padding: 1cm">
+    <div class="row" style="padding: 1cm">
 
       <div class="col-sm" style="text-align: center;">
         <h3>Status for vindue</h3>
@@ -157,7 +161,7 @@
       </div>
       <div class="col-sm" style="text-align: center;">
         <h3>Status for vanding af planter</h3>
-        <i style="font-size: 80px;" style="text-align: center;" class="material-icons md-48">local_florist</i>
+        <i id="vandeIkon" style="font-size: 80px;" style="text-align: center;" class="material-icons md-48">local_florist</i>
       </div>
     </div>
 
