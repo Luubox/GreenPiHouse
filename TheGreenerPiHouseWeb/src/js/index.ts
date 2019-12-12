@@ -40,6 +40,7 @@ setTimeout(() => { clearInterval(timerId); ChangeIcon("stop"); }, 12000);
 
 
 function ChangeIcon(value: string){
+    
     if (value == "start") {
         showIcon.innerHTML = "4k"
     }
@@ -48,7 +49,6 @@ function ChangeIcon(value: string){
     }
 }
 
-while ()
 
 function changeSelectedItemTemp() {
     console.log(selectedValueTemp[selectedValueTemp.selectedIndex])
