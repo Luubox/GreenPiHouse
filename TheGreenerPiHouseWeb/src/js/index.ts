@@ -8,12 +8,9 @@ interface Idata {
     humidity: number,
 }
 
-<<<<<<< HEAD
 //virk nu forhelvede
-=======
 let elementTemp: HTMLDivElement = < HTMLDivElement > (document.getElementById("temperature"))
 let elementHumi: HTMLDivElement = < HTMLDivElement > (document.getElementById("humidity"))
->>>>>>> parent of a5aa8e2... Revert "Merge branch 'Densejebranch' into JonasProject3Ny"
 
 let elementTempOut: HTMLDivElement = < HTMLDivElement > (document.getElementById("tmpout"))
 let elementHumiOut: HTMLDivElement = < HTMLDivElement > (document.getElementById("humout"))
@@ -49,8 +46,6 @@ window.addEventListener("load", (event) => {
     GetTempterature()
     GetHumidity()
 })
-
-let temperatureSelector: HTMLOptionElement = <HTMLOptionElement> (document.getElementById("temperatureOption"))
 
 let selectedValueTemp: HTMLSelectElement = <HTMLSelectElement> (document.getElementById("selectTemp"))
 let selectedValueHumi: HTMLSelectElement = <HTMLSelectElement> (document.getElementById("selectHumi"))

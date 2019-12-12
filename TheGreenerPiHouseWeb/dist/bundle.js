@@ -2074,20 +2074,38 @@ var elementTemp = (document.getElementById("temperature"));
 var elementHumi = (document.getElementById("humidity"));
 var elementTempOut = (document.getElementById("tmpout"));
 var elementHumiOut = (document.getElementById("humout"));
-var testbtn = (document.getElementById("testButton"));
+var day1DayElement = (document.getElementById("day1day"));
+var day1TempElement = (document.getElementById("day1temp"));
+var day1HumiElement = (document.getElementById("day1hum"));
+var day2DayElement = (document.getElementById("day2day"));
+var day2TempElement = (document.getElementById("day2temp"));
+var day2HumiElement = (document.getElementById("day2hum"));
+var day3DayElement = (document.getElementById("day3day"));
+var day3TempElement = (document.getElementById("day3temp"));
+var day3HumiElement = (document.getElementById("day3hum"));
+var day4DayElement = (document.getElementById("day4day"));
+var day4TempElement = (document.getElementById("day4temp"));
+var day4HumiElement = (document.getElementById("day4hum"));
+var day5DayElement = (document.getElementById("day5day"));
+var day5TempElement = (document.getElementById("day5temp"));
+var day5HumiElement = (document.getElementById("day5hum"));
+var updateWeatherBtn = (document.getElementById("updateWeather"));
+var updateForecastBtn = (document.getElementById("updateForecast"));
 var elementWindow = (document.getElementById("body"));
+var temperatureSelector = (document.getElementById("temperatureOption"));
 elementWindow.addEventListener("loadend", GetTempterature);
 window.addEventListener("load", function (event) {
     GetTempterature();
     GetHumidity();
 });
-var temperatureSelector = (document.getElementById("temperatureOption"));
 var selectedValueTemp = (document.getElementById("selectTemp"));
 var selectedValueHumi = (document.getElementById("selectHumi"));
 var selectButtonTemp = (document.getElementById("chooseTempButton"));
 var selectButtonHumi = (document.getElementById("chooseHumiButton"));
 selectButtonTemp.addEventListener("click", changeSelectedItemTemp);
 selectButtonHumi.addEventListener("click", changeSelectedItemHumi);
+updateWeatherBtn.addEventListener("click", apiGetWeatherData);
+updateForecastBtn.addEventListener("click", apiGetForecastData);
 var showIcon = (document.getElementById("vandeIkon"));
 var timerId = setInterval(function () { return ChangeIcon("start"); }, 1000);
 setTimeout(function () { clearInterval(timerId); ChangeIcon("stop"); }, 12000);
@@ -2107,11 +2125,6 @@ function changeSelectedItemHumi() {
     console.log(selectedValueHumi[selectedValueHumi.selectedIndex]);
 }
 console.log(selectedValueHumi[selectedValueHumi.selectedIndex]);
-testbtn.addEventListener("click", apiCall);
-//let elementButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("startbutton"))
-// let LatestButton: HTMLButtonElement = <HTMLButtonElement> (document.getElementById("Latestbutton"))
-// elementButton.addEventListener("click", GetAll)
-// LatestButton.addEventListener("click", GetLatest)
 function GetTempterature() {
     _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://thegreenerpihouse.azurewebsites.net/GetLatestData")
         .then(function (response) {
@@ -2160,27 +2173,60 @@ function GetLatest() {
         elementTemp.innerHTML = error.message;
     });
 }
-function apiCall() {
-    // let loc = "Roskilde"
-    // let unit = "C"
-    // axios.get <Idata> ("https://vejr.eu/api.php?location=" + loc + "&degree=" + unit)
-    // .then(function (response: AxiosResponse <CurrentData>): void{
-    //     console.log(response.data)
-    // })
-    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://api.openweathermap.org/data/2.5/weather?q=Roskilde&units=metric&appid=45ca4ad4019ca871293511a2e165a166")
+//skal bruges til pi??
+var sunrise;
+var sunset;
+var conditions;
+function apiGetWeatherData() {
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://api.openweathermap.org/data/2.5/weather?q=Roskilde&units=Metric&appid=45ca4ad4019ca871293511a2e165a166")
         .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data)
         var tempRes = response.data.main.temp + "°C";
         var humiRes = response.data.main.humidity + "%";
+        sunrise = new Date(response.data.sys.sunrise);
+        sunset = new Date(response.data.sys.sunset);
+        conditions = response.data.weather[0].main;
         elementTempOut.innerHTML = tempRes;
         elementHumiOut.innerHTML = humiRes;
+        // console.log(sunrise + " " + sunset + " " +  conditions)
+    });
+}
+var days = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
+function apiGetForecastData() {
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://api.openweathermap.org/data/2.5/forecast?q=Roskilde&units=Metric&appid=45ca4ad4019ca871293511a2e165a166")
+        .then(function (response) {
+        var forecastData = [];
+        var i = 0;
+        while (i < 39) {
+            var tmp = {};
+            tmp.temp = response.data.list[i].main.temp;
+            tmp.humidity = response.data.list[i].main.humidity;
+            tmp.conditions = response.data.list[i].weather[0].main;
+            var d = new Date(response.data.list[i].dt_txt);
+            tmp.day = days[d.getDay()];
+            forecastData.push(tmp);
+            console.log(forecastData);
+            i = i + 8;
+        }
+        // console.log(forecastData)
+        day1DayElement.innerHTML = forecastData[0].day;
+        day1TempElement.innerHTML = forecastData[0].temp + "°C";
+        day1HumiElement.innerHTML = forecastData[0].humidity + "%";
+        day2DayElement.innerHTML = forecastData[1].day;
+        day2TempElement.innerHTML = forecastData[1].temp + "°C";
+        day2HumiElement.innerHTML = forecastData[1].humidity + "%";
+        day3DayElement.innerHTML = forecastData[2].day;
+        day3TempElement.innerHTML = forecastData[2].temp + "°C";
+        day3HumiElement.innerHTML = forecastData[2].humidity + "%";
+        day4DayElement.innerHTML = forecastData[3].day;
+        day4TempElement.innerHTML = forecastData[3].temp + "°C";
+        day4HumiElement.innerHTML = forecastData[3].humidity + "%";
+        day5DayElement.innerHTML = forecastData[4].day;
+        day5TempElement.innerHTML = forecastData[4].temp + "°C";
+        day5HumiElement.innerHTML = forecastData[4].humidity + "%";
     });
 }
 
-<<<<<<< HEAD
-=======
-throw new Error("Module parse failed: Unexpected token (50:7)\nFile was processed with these loaders:\n * ./node_modules/ts-loader/index.js\nYou may need an additional loader to handle the result of these loaders.\n|     }\n| }\n> while ()\n|     function changeSelectedItemTemp() {\n|         console.log(selectedValueTemp[selectedValueTemp.selectedIndex]);");
->>>>>>> parent of a5aa8e2... Revert "Merge branch 'Densejebranch' into JonasProject3Ny"
 
 /***/ }),
 
