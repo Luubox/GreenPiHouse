@@ -2069,6 +2069,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/axios/index */ "./node_modules/axios/index.js");
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__);
 
+//virk nu forhelvede
 var elementTemp = (document.getElementById("temperature"));
 var elementHumi = (document.getElementById("humidity"));
 var elementTempOut = (document.getElementById("tmpout"));
