@@ -2175,14 +2175,13 @@ module.exports = __webpack_require__.p + "bundle.css";
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************!*\
-  !*** multi ./src/index.htm ./src/scss/styles.css ./src/scss/styles.scss ./src/js/index.ts ***!
-  \********************************************************************************************/
+/*!**********************************************************************!*\
+  !*** multi ./src/index.htm ./src/scss/styles.scss ./src/js/index.ts ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./src/index.htm */"./src/index.htm");
-!(function webpackMissingModule() { var e = new Error("Cannot find module './src/scss/styles.css'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 __webpack_require__(/*! ./src/scss/styles.scss */"./src/scss/styles.scss");
 module.exports = __webpack_require__(/*! ./src/js/index.ts */"./src/js/index.ts");
 
